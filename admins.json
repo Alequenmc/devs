@@ -113,5 +113,25 @@
         "url": "https://www.linkedin.com/in/maria-r-s-2762a2391?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
       }
     ]
+  },
+  {
+    "nombre": "Carlos Quiroz",
+    "descripcion": "Developer .NET (Backend)",
+    "foto": "img/carlos_quiroz.jpeg",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Proyectos Colaborativos"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/qubumx"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "https://www.linkedin.com/in/carlosquirozbucio/"
+      }
+    ]
   }
+
 ]
