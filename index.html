@@ -1,266 +1,307 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Comunidad Dev</title>
-  <meta name="description" content="Conecta, aprende y colabora con otros programadores a través de WhatsApp.">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <meta property="og:image" content="https://comunidad-dev.vercel.app/images/frontpage.png" />
-  <meta property="og:url" content="https://comunidad-dev.vercel.app" />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>  
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8"> <!-- Corregido de UTF-T a UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad DEVS - Grupos de WhatsApp</title>
+    <!-- Cargar Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Importar Google Font "Anton" para el logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Añadido: Link a Font Awesome para los iconos de marcas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Estilo base con el fondo solicitado */
+        body {
+            background-color: #141414; /* Color de fondo actualizado */
+            font-family: 'Inter', sans-serif;
+            color: #e5e7eb; /* text-gray-200 */
+        }
+        
+        /* Estilo para el logo */
+        .logo {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1.5px;
+        }
+        
+        /* Estilo para las tarjetas con borde sólido */
+        .card-border {
+            border: 1px solid #262626; /* border-neutral-800 */
+            /* Fondo actualizado para coincidir con el body */
+            /* background: linear-gradient(#141414, #141414) padding-box,
+                        linear-gradient(120deg, #3b82f6, #a855f7) border-box; */ /* Gradiente eliminado */
+            transition: all 0.3s ease;
+        }
+        
+        .card-border:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: #404040; /* border-neutral-700 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Sombra estándar de Tailwind (lg) */
+        }
+        
+        /* Estilo para los botones de navegación (Tabs) */
+        .nav-tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        
+        .nav-tab.active {
+            background-color: #262626; /* bg-neutral-800 */
+            color: #ffffff;
+        }
+        
+        .nav-tab:not(.active):hover {
+            background-color: #171717; /* bg-neutral-900 */
+        }
+        
+        /* Ocultar contenido inactivo */
+        .content-section.hidden {
+            display: none;
+        }
+
+        /* Añadido: Estilo para los nuevos iconos de Font Awesome */
+        .social-icon i {
+            font-size: 24px; /* 1.5rem, para igualar el w-6 h-6 anterior */
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-  <main>
-      <section id="home" class="hero">
-          <div class="hero-image">
-              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" stroke="#0AE98A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Encabezado -->
+    <!-- Actualizado: border-neutral-800, bg-[#141414]/90, backdrop-blur-lg -->
+    <header class="border-b border-neutral-800 sticky top-0 bg-[#141414]/90 backdrop-blur-lg z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="logo text-4xl text-white">DEVS</a>
+            
+            <!-- Navegación SPA (Tabs) -->
+            <!-- Actualizado: border-neutral-700 -->
+            <div class="flex space-x-2 border border-neutral-700 p-1 rounded-lg">
+                <button id="tab-grupos" class="nav-tab active">Grupos</button>
+                <button id="tab-admins" class="nav-tab">Admins</button>
+            </div>
+        </nav>
+    </header>
 
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+    <!-- Contenido Principal -->
+    <main class="container mx-auto px-6 py-12">
+    
+        <!-- Sección de Grupos (visible por defecto) -->
+        <section id="content-grupos" class="content-section">
+            <h1 class="text-4xl font-bold text-white mb-4">Grupos de la Comunidad</h1>
+            <p class="text-lg text-gray-400 mb-10">Explora y únete a nuestros grupos de WhatsApp para conectar y aprender.</p>
+            
+            <!-- Contenedor de la cuadrícula de grupos -->
+            <div id="grupos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Las tarjetas de grupo se insertarán aquí por JS -->
+                <!-- Indicador de carga simple -->
+                <p class="text-gray-400 col-span-full">Cargando grupos...</p>
+            </div>
+        </section>
+        
+        <!-- Sección de Administradores (oculta por defecto) -->
+        <section id="content-admins" class="content-section hidden">
+            <h1 class="text-4xl font-bold text-white mb-4">Administradores</h1>
+            <p class="text-lg text-gray-400 mb-10">El equipo que mantiene viva y ordenada a la comunidad.</p>
+            
+            <!-- Contenedor de la cuadrícula de admins -->
+            <div id="admins-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Las tarjetas de admin se insertarán aquí por JS -->
+            </div>
+        </section>
 
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+    </main>
 
-<g id="SVGRepo_iconCarrier"> <path d="M10 4H6v6h4V4z"/> <path d="M18 14h-4v6h4v-6z"/> <path d="M14 4h2v6m-2 0h4"/> <path d="M6 14h2v6m-2 0h4"/> </g>
+    <!-- Footer -->
+    <!-- Actualizado: border-neutral-800 -->
+    <footer class="container mx-auto px-6 py-8 mt-12 border-t border-neutral-800">
+        <p class="text-center text-gray-500">&copy; 2025 Comunidad DEVS. Todos los derechos reservados.</p>
+    </footer>
 
-</svg>
-          </div>
-          <div class="hero-content">
-              <h1 class="hero-title">Conecta, aprende y colabora.</h1>
-              <p class="hero-text">Únete a nuestra comunidad de programación en WhatsApp, un espacio para Juniors y Seniors donde compartir conocimientos, resolver dudas y crecer juntos.</p>
-              <a href="https://chat.whatsapp.com/LorOw0p0adF88z7josllSZ" class="btn">Unirse a la comunidad</a>
-          </div>
-      </section>
+    <!-- Plantillas de Tarjetas (para clonar con JS) -->
+    <template id="grupo-card-template">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="grupo-card-link block">
+            <!-- Actualizado: bg-neutral-900 -->
+            <div class="card-border bg-neutral-900 p-6 rounded-xl h-full flex flex-col">
+                <div class="flex items-center mb-4">
+                    <!-- 1. CAMBIO EN LA PLANTILLA: Esto ahora es un <img> -->
+                    <img src="" alt="" class="grupo-imagen w-12 h-12 rounded-lg object-cover mr-4">
+                    
+                    <!-- Título -->
+                    <h3 class="grupo-titulo text-xl font-bold text-white"></h3>
+                </div>
+                <!-- Descripción -->
+                <p class="grupo-descripcion text-gray-400 text-sm flex-grow"></p>
+                
+                <!-- Botón de Unirse -->
+                <div class="mt-5">
+                    <span class="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                        Unirse al grupo &rarr;
+                    </span>
+                </div>
+            </div>
+        </a>
+    </template>
+    
+    <template id="admin-card-template">
+        <!-- Actualizado: bg-neutral-900 -->
+        <div class="card-border bg-neutral-900 p-6 rounded-xl h-full flex flex-col">
+            <div class="flex items-center mb-5">
+                <!-- Foto de perfil -->
+                <img src="" alt="" class="admin-foto w-16 h-16 rounded-full mr-5 border-2 border-indigo-500">
+                <div>
+                    <!-- Nombre -->
+                    <h3 class="admin-nombre text-2xl font-bold text-white"></h3>
+                    <!-- Descripción corta -->
+                    <p class="admin-desc text-indigo-300 text-sm"></p>
+                </div>
+            </div>
+            
+            <!-- Grupos que administra -->
+            <div class="mb-5">
+                <h4 class="text-xs font-semibold text-gray-400 uppercase mb-2">Administra</h4>
+                <div class="admin-grupos flex flex-wrap gap-2">
+                    <!-- Se insertarán por JS -->
+                </div>
+            </div>
+            
+            <!-- Links Sociales -->
+            <div class="admin-links mt-auto flex space-x-3">
+                <!-- Se insertarán por JS -->
+            </div>
+        </div>
+    </template>
 
-<section id="grupos" class="groups-slider">
-        <h2 class="sub-title">Lista de Grupos Disponibles</h2>    
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <!-- Grupo 1 -->
-      <div class="swiper-slide">
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473402838_619360577692145_3098938844545119211_n.jpg?ccb=11-4&oh=01_Q5AaIA89avIyaew4_yUVZWMsAXWQzrDuGopC3mgf6m5F_Xn-&oe=67C58BE4&_nc_sid=5e03e0&_nc_cat=111" alt="HTML, CSS, JS y TS" class="group-image">
-            <div>
-              <h3>HTML, CSS, JS y TS</h3>
-              <span class="category">Desarrollo Web</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/Itsoskt86NyKhfeJy3jURu" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473396802_1172989471081652_4199046555870076947_n.jpg?ccb=11-4&oh=01_Q5AaIFLI06wuIa-EJAugWGSZYpaBEqHzIa-AyMJUfo3lqZdB&oe=67C5BBA1&_nc_sid=5e03e0&_nc_cat=110" alt="English Community" class="group-image">
-            <div>
-              <h3>English Community</h3>
-              <span class="category">Idiomas</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/EoLyNVRPycNGnMZYrtD3eM" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473402269_613797744792407_5480607991749275273_n.jpg?ccb=11-4&oh=01_Q5AaIA_HUgYvU82adK8_-YTWYca0CeSBO1YkkxeEsESw1-Vf&oe=67C5977B&_nc_sid=5e03e0&_nc_cat=105" alt="TÉCNICO COMPU Y REDES 2" class="group-image">
-            <div>
-              <h3>TÉCNICO COMPU Y REDES 2</h3>
-              <span class="category">Redes y Sistemas</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/ExwiJtp19dOAwdLAXisilC" class="btn">Unirse</a>
-        </div>
-      </div>
+    <script>
+        // --- LÓGICA DE LA APLICACIÓN ---
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Lógica de Pestañas (Tabs) ---
+            const tabGrupos = document.getElementById('tab-grupos');
+            const tabAdmins = document.getElementById('tab-admins');
+            const contentGrupos = document.getElementById('content-grupos');
+            const contentAdmins = document.getElementById('content-admins');
+            
+            tabGrupos.addEventListener('click', () => {
+                tabGrupos.classList.add('active');
+                tabAdmins.classList.remove('active');
+                contentGrupos.classList.remove('hidden');
+                contentAdmins.classList.add('hidden');
+            });
+            
+            tabAdmins.addEventListener('click', () => {
+                tabAdmins.classList.add('active');
+                tabGrupos.classList.remove('active');
+                contentAdmins.classList.remove('hidden');
+                contentGrupos.classList.add('hidden');
+            });
 
-      <!-- Grupo 2 -->
-      <div class="swiper-slide">
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/471930763_973317198179324_8104496615651856055_n.jpg?ccb=11-4&oh=01_Q5AaIAaEZxAQqNAjTudau3ygsdg7aCBUh4Ys5QhCqZ7zemVy&oe=67C1F29F&_nc_sid=5e03e0&_nc_cat=103" alt="Bases Informáticas" class="group-image">
-            <div>
-              <h3>Bases Informáticas</h3>
-              <span class="category">Informática Básica</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/HPVmtXpuZYLA2ZDqY3L5uG" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/460408314_9649544228408253_4442463230687049552_n.jpg?ccb=11-4&oh=01_Q5AaICmFRGZaSXa-rtE-CQwECtdNS8RBu4l3Is8iBj7qt-LD&oe=67C2EFBF&_nc_sid=5e03e0&_nc_cat=110" alt="ReactJS" class="group-image">
-            <div>
-              <h3>ReactJS</h3>
-              <span class="category">Desarrollo Web</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/LC2q42DASoZ61GmjgG1VTU" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473402904_958159393173125_2547861942530762574_n.jpg?ccb=11-4&oh=01_Q5AaIIzs01jX2rkoyImJOddnDDw4pbTS8lEJ8S10_MIPkpU1&oe=67C5B2D9&_nc_sid=5e03e0&_nc_cat=111" alt="Termux" class="group-image">
-            <div>
-              <h3>Termux</h3>
-              <span class="category">Sistemas</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/KfcopFyURYaFm2rBDs74RV" class="btn">Unirse</a>
-        </div>
-      </div>
+            // --- Cargar Datos y Renderizar ---
+            fetch('datos.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar datos.json. Estado: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const gruposData = data.grupos;
+                    const adminsData = data.admins;
+                    
+                    renderizarGrupos(gruposData);
+                    renderizarAdmins(adminsData);
+                })
+                .catch(error => {
+                    console.error('Error al cargar los datos:', error);
+                    document.getElementById('grupos-grid').innerHTML = '<p class="text-red-400 col-span-full">Error al cargar los grupos. Revisa la consola.</p>';
+                });
 
-      <!-- Grupo 3 -->
-      <div class="swiper-slide">
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473401587_1016017777133800_6206043180140860463_n.jpg?ccb=11-4&oh=01_Q5AaIHajDIC2MkM9rkzgoeWqdaYwtxP3TrGTb-owhuEhJyBE&oe=67C59BB0&_nc_sid=5e03e0&_nc_cat=110" alt="Usuarios de Linux" class="group-image">
-            <div>
-              <h3>Usuarios de Linux</h3>
-              <span class="category">Sistemas Operativos</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/KKqtpmTKCe2FaR3cIWZc24" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/472492560_590545063698200_4310731846011526185_n.jpg?ccb=11-4&oh=01_Q5AaIFAXJs0_Pc4W6dL1UhFdl_otGFhW1Ew_R0TJRBYspIZa&oe=67C1E812&_nc_sid=5e03e0&_nc_cat=106" alt="AngularJS" class="group-image">
-            <div>
-              <h3>AngularJS</h3>
-              <span class="category">Desarrollo Web</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/GTjZEOHddncGj3ot5Mjz5X" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/471741273_1664400104464173_7075447754346271300_n.jpg?ccb=11-4&oh=01_Q5AaIDjAHiVqrgz-4XeN0vuE_3mXSFtSJ7G1jXrVBmsBPegA&oe=67C1F43E&_nc_sid=5e03e0&_nc_cat=111" alt="C# & .NET" class="group-image">
-            <div>
-              <h3>C# & .NET</h3>
-              <span class="category">Desarrollo de Software</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/BoIZ1mV1jT008StOdpqyYQ" class="btn">Unirse</a>
-        </div>
-      </div>
+            
+            function renderizarGrupos(gruposData) {
+                const gruposGrid = document.getElementById('grupos-grid');
+                const grupoTemplate = document.getElementById('grupo-card-template');
+                gruposGrid.innerHTML = ''; // Limpiar el mensaje de "Cargando..."
 
-      <!-- Grupo 4 -->
-      <div class="swiper-slide">
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473413804_1264610094611407_4435781483757281968_n.jpg?ccb=11-4&oh=01_Q5AaIDZhn7DDVpAQFJmr2SSFdEBK97wBWDeD9Wmv0WtxRoGl&oe=67C5A32C&_nc_sid=5e03e0&_nc_cat=104" alt="Diseño Gráfico" class="group-image">
-            <div>
-              <h3>Diseño Gráfico</h3>
-              <span class="category">Diseño</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/G2Rnq9rHRZWHCe8RIFMZTk" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/471488150_893435879655779_3882601844720608042_n.jpg?ccb=11-4&oh=01_Q5AaIITylJ0mEPoTKNs69cpARcE0FY5iK-Ysc5S8H9RBTJpl&oe=67C20E80&_nc_sid=5e03e0&_nc_cat=104" alt="Usuarios de Windows" class="group-image">
-            <div>
-              <h3>Usuarios de Windows</h3>
-              <span class="category">Sistemas Operativos</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/D6iCsmncbbSGv8zFVVz3Fk" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473401767_9169118043141294_3878859187623931388_n.jpg?ccb=11-4&oh=01_Q5AaIM9INh-qGuIE_r1BbjtX7toXXRUZxEeQWfNQIKsiaJZD&oe=67C5984F&_nc_sid=5e03e0&_nc_cat=108" alt="UX/UI" class="group-image">
-            <div>
-              <h3>UX/UI</h3>
-              <span class="category">Diseño</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/I9H77eb5P74J3zV0UCaEyl" class="btn">Unirse</a>
-        </div>
-      </div>
+                gruposData.forEach(grupo => {
+                    // Clonar la plantilla
+                    const card = grupoTemplate.content.cloneNode(true);
+                    
+                    // Rellenar los datos de la plantilla
+                    card.querySelector('.grupo-card-link').href = grupo.link;
+                    
+                    // 2. CAMBIO EN EL SCRIPT: Asignar 'src' y 'alt' al <img>
+                    const imgEl = card.querySelector('.grupo-imagen');
+                    imgEl.src = grupo.imagen;
+                    imgEl.alt = `Logo del grupo ${grupo.titulo}`;
+                    
+                    card.querySelector('.grupo-titulo').textContent = grupo.titulo;
+                    card.querySelector('.grupo-descripcion').textContent = grupo.descripcion;
+                    
+                    // Añadir la tarjeta al grid
+                    gruposGrid.appendChild(card);
+                });
+            }
+            
+            function renderizarAdmins(adminsData) {
+                const adminsGrid = document.getElementById('admins-grid');
+                const adminTemplate = document.getElementById('admin-card-template');
+                adminsGrid.innerHTML = ''; // Limpiar por si acaso
+                
+                // Iterar y renderizar cada admin
+                adminsData.forEach(admin => {
+                    const card = adminTemplate.content.cloneNode(true);
+                    
+                    // --- Poblar Info del Admin ---
+                    card.querySelector('.admin-foto').src = admin.foto;
+                    card.querySelector('.admin-foto').alt = `Foto de ${admin.nombre}`;
+                    card.querySelector('.admin-nombre').textContent = admin.nombre;
+                    card.querySelector('.admin-desc').textContent = admin.descripcion;
+                    
+                    // --- Poblar Grupos que Administra ---
+                    const gruposContainer = card.querySelector('.admin-grupos');
+                    admin.grupos.forEach(nombreGrupo => {
+                        const tag = document.createElement('span');
+                        // Actualizado: bg-neutral-800
+                        tag.className = "px-2 py-0.5 bg-neutral-800 text-indigo-300 text-xs font-medium rounded-full";
+                        tag.textContent = nombreGrupo;
+                        gruposContainer.appendChild(tag);
+                    });
+                    
+                    // --- Poblar Links Sociales ---
+                    const linksContainer = card.querySelector('.admin-links');
+                    admin.links.forEach(link => {
+                        const a = document.createElement('a');
+                        a.href = link.url;
+                        a.target = "_blank";
+                        a.rel = "noopener noreferrer";
 
-      <!-- Grupo 5 -->
-      <div class="swiper-slide">
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/473412863_1121971676351360_3920084577684822976_n.jpg?ccb=11-4&oh=01_Q5AaIIefKHNhwqwNYBebjgYw3GeMqTV3vJmRD2Y8HaXXrttl&oe=67C59347&_nc_sid=5e03e0&_nc_cat=106" alt="Python" class="group-image">
-            <div>
-              <h3>Python</h3>
-              <span class="category">Programación</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/CUPTq0uzlc061x6nV0haHX" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/471998544_1083064910166391_3910852745990019401_n.jpg?ccb=11-4&oh=01_Q5AaIDwM9zZSm7HMAmGwBemECNgJb4oxbbLksEM9wcP_R2SP&oe=67C21060&_nc_sid=5e03e0&_nc_cat=101" alt="Kotlin" class="group-image">
-            <div>
-              <h3>Kotlin</h3>
-              <span class="category">Programación</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/HjSG4yUHXWkK5K6AgS03N6" class="btn">Unirse</a>
-        </div>
-        <div class="group-item">
-          <div class="group-header">
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/471844928_954356009427161_8936086050783683079_n.jpg?ccb=11-4&oh=01_Q5AaIP7RCTFn35j1M2bpI8XYMuJeMPsBIvtyCCwZsOPso0ul&oe=67C1DD34&_nc_sid=5e03e0&_nc_cat=102" alt="Swift" class="group-image">
-            <div>
-              <h3>Swift</h3>
-              <span class="category">Programación</span>
-            </div>
-          </div>
-          <a href="https://chat.whatsapp.com/Hbt6bNLgseq9y5bTssrFiz" class="btn">Unirse</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Indicadores -->
-    <div class="swiper-pagination"></div>
-  </div>
-</section>
-
-<section id="testimonios" class="testimonials">
-      <div class="container">
-        <h2 class="sub-title">Lo que dicen nuestros miembros</h2>
-        <div class="testimonial-list">
-  <div class="testimonial-item">
-    <p>"Gracias a la comunidad, he mejorado mis habilidades y ahora tengo la oportunidad de trabajar en proyectos interesantes como desarrollador."</p>
-    <p>- Martín Cruz</p>
-  </div>
-  <div class="testimonial-item">
-    <p>"Lo que más me gusta de esta comunidad es el ambiente de apoyo y la colaboración constante. Aquí aprendo algo nuevo todos los días."</p>
-    <p>- Valeria Jiménez</p>
-  </div>
-  <div class="testimonial-item">
-    <p>"Ser parte de este grupo ha sido fundamental para mi crecimiento profesional. La cantidad de recursos y ayuda que se ofrece es invaluable."</p>
-    <p>- Darío Mendoza</p>
-  </div>
-</div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Comunidad Dev. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-
-  <script src="scripts.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-   <script>
-       document.addEventListener("DOMContentLoaded", () => {
-  const swiper = new Swiper('.swiper', {
-    loop: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    slidesPerView: 1,
-    spaceBetween: 20,
-  });
-});
-   </script>
+                        if (link.tipo === 'github') {
+                            // Actualizado: Usar clases de Font Awesome
+                            a.className = "social-icon text-gray-400 hover:text-white transition-colors";
+                            a.innerHTML = `<i class="fa-brands fa-github"></i>`;
+                        } else if (link.tipo === 'linkedin') {
+                            // Actualizado: Usar clases de Font Awesome
+                            a.className = "social-icon text-gray-400 hover:text-white transition-colors";
+                            a.innerHTML = `<i class="fa-brands fa-linkedin"></i>`;
+                        }
+                        linksContainer.appendChild(a);
+                    });
+                    
+                    adminsGrid.appendChild(card);
+                });
+            }
+            
+        });
+    </script>
 </body>
 </html>
