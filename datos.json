@@ -193,6 +193,25 @@
           "url": "https://www.linkedin.com/in/luiggycf/"
         }
       ]
+    },
+    {
+      "nombre": "Juan Jiménez",
+      "descripcion": "Analista de Datos",
+      "foto": "img/default_profile.png",
+      "grupos": [
+        "Python"
+      ],
+      "links": [
+        {
+          "tipo": "github",
+          "url": "https://github.com/juancarlosjimenezgt-lab"
+        },
+        {
+          "tipo": "linkedin",
+          "url": "https://www.linkedin.com/in/juan-carlos-jimenez-vargas-a53b9b206/"
+        }
+      ]
     }
   ]
+
 }
