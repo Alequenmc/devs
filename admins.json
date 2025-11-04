@@ -1,0 +1,117 @@
+[
+  {
+    "nombre": "Alex Quicaño",
+    "descripcion": "Frontend Developer",
+    "foto": "img/default_profile.png",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Avisos"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/Alequenmc"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "https://www.linkedin.com/in/elver-alex-alarcon-quica%C3%B1o-696a87317?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      }
+    ]
+  },
+  {
+    "nombre": "Fernando González",
+    "descripcion": "Frontend Developer",
+    "foto": "img/default_profile.png",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Avisos"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/gonzalezfer/"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "www.linkedin.com/in/gonzalez-fer"
+      }
+    ]
+  },
+  {
+    "nombre": "Luiggy Carlin",
+    "descripcion": "FullStack Developer",
+    "foto": "img/luiggy_carlin.jpeg",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Avisos"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/lgcarlinf"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "https://www.linkedin.com/in/luiggycf/"
+      }
+    ]
+  },
+  {
+    "nombre": "Juan Jiménez",
+    "descripcion": "Analista de Datos",
+    "foto": "img/default_profile.png",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Python"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/juancarlosjimenezgt-lab"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "https://www.linkedin.com/in/juan-carlos-jimenez-vargas-a53b9b206/"
+      }
+    ]
+  },
+  {
+    "nombre": "Jorge Orejuela",
+    "descripcion": "Estudiante Universitario",
+    "foto": "img/default_profile.png",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Área Backend",
+      "Área Backend 2.0"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/jorgeorejuela"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "https://www.linkedin.com/in/jorge-orejuela-"
+      }
+    ]
+  },
+  {
+    "nombre": "María Rojas",
+    "descripcion": "Estudiante Universitaria",
+    "foto": "img/default_profile.png",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Desarrollo Java"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/r-Maria-07"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "https://www.linkedin.com/in/maria-r-s-2762a2391?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      }
+    ]
+  }
+]
