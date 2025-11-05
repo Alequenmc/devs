@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;"> <!-- Añadido scroll-behavior aquí -->
 <head>
     <meta charset="UTF-8">
-    <!-- Actualizado: Se añadió maximum-scale=1 y user-scalable=no para prevenir el zoom -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Comunidad DEVS - Grupos de WhatsApp</title>
-    <!-- Cargar Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Importar Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Link a Font Awesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        /* Estilo base con el fondo solicitado */
+        /* Estilo base */
         body {
-            background-color: #141414; /* Color de fondo */
-            font-family: 'Montserrat', sans-serif; /* Fuente principal actualizada */
-            color: #e5e7eb; /* text-gray-200 */
-            /* CORRECCIÓN: Se añade overflow: hidden para evitar el scroll en el body */
-            overflow: hidden;
+            background-color: #141414;
+            font-family: 'Montserrat', sans-serif;
+            color: #e5e7eb;
         }
         
         /* Estilo para el logo */
@@ -32,37 +24,48 @@
             letter-spacing: 1.5px;
         }
         
-        /* Estilo para las tarjetas con borde sólido */
+        /* Estilo para las tarjetas */
         .card-border {
-            border: 1px solid #262626; /* border-neutral-800 */
-            background-color: #171717; /* bg-neutral-900 */
+            border: 1px solid #262626;
+            background-color: #171717;
             transition: all 0.3s ease;
         }
         
         .card-border:hover {
             transform: translateY(-4px) scale(1.02);
-            border-color: #404040; /* border-neutral-700 */
+            border-color: #404040;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
         
         /* Estilo para los botones de navegación (Tabs) */
         .nav-tab {
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 8px 20px; /* Ajustado para píldora */
+            border-radius: 9999px; /* rounded-full */
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
+            
+            /* --- MODIFICACIÓN --- */
+            /* Fondo y color base para botones INACTIVOS */
+            background-color: #1a1a1a; /* bg-neutral-900 */
+            color: #a3a3a3; /* text-neutral-400 */
+            /* --- FIN MODIFICACIÓN --- */
+            
             border: 1px solid transparent;
             white-space: nowrap; /* Evita que el texto se parta */
         }
         
         .nav-tab.active {
-            background-color: #262626; /* bg-neutral-800 */
+            background-color: #262626;
             color: #ffffff;
         }
         
         .nav-tab:not(.active):hover {
-            background-color: #1a1a1a;
+            /* --- MODIFICACIÓN --- */
+            /* Al pasar el mouse, se ve igual que el activo */
+            background-color: #262626;
+            color: #ffffff;
+            /* --- FIN MODIFICACIÓN --- */
         }
         
         /* Ocultar contenido inactivo */
@@ -70,168 +73,148 @@
             display: none;
         }
 
-        /* Estilo para los iconos sociales del header */
+        /* Estilos del Header */
+        header {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            height: 4.5rem; /* Altura fija */
+            background-color: #141414;
+        }
+        
+        /* Iconos sociales del header */
         .header-social-icon {
             font-size: 1.25rem; /* 20px */
-            color: #a3a3a3; /* text-neutral-400 */
+            color: #a3a3a3;
             transition: color 0.2s ease, transform 0.2s ease;
         }
         .header-social-icon:hover {
-            color: #ffffff; /* text-white */
+            color: #ffffff;
             transform: scale(1.1);
         }
 
-        /* --- INICIO: Estilos para Tabs Fijos --- */
-        
-        /* Contenedor de tabs: transiciones para opacidad y transform */
+        /* Ocultar scrollbar en el wrapper de los tabs */
+        #nav-tabs-wrapper::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
         #nav-tabs-wrapper {
-            transition: opacity 0.3s ease;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
 
-        /* Estilo para el header cuando los tabs están activos */
-        .header-tabs-mode {
-            /* Asegura un fondo sólido cuando se scrollea */
-            background: #141414 !important; 
-            /* ELIMINADO: Ya no se añade el borde inferior */
-            /* border-bottom: 1px solid #262626; */
-        }
-        /* --- FIN: Estilos para Tabs Fijos --- */
     </style>
 </head>
-<!-- CORRECCIÓN: Añadido 'overflow-hidden' para prevenir el scroll principal -->
-<body class="min-h-screen overflow-hidden">
+<body class="min-h-screen">
 
-    <!-- 
-      CORRECCIÓN (Nueva Estructura):
-      Este es el ÚNICO contenedor.
-      Es fijo, llena la pantalla y gestiona el scroll.
-      El body (arriba) tiene overflow-hidden.
-      AÑADIDO: id="main-scroll-container" para el JS
-    -->
-    <div id="main-scroll-container" class="fixed top-0 left-0 right-0 bottom-0 overflow-y-auto z-40">
-
-        <!-- 
-          Encabezado (AHORA DENTRO del div de scroll)
-          - Cambiado de 'fixed' a 'sticky' para que se pegue arriba DENTRO de este div.
-          - 'top-0' para que se pegue en la parte superior.
-          - 'z-50' para que esté sobre el contenido de 'main'.
-        -->
-        <header class="sticky top-0 left-0 right-0 bg-gradient-to-b from-[#141414] to-transparent z-50 transition-all duration-300" style="height: 4.5rem;"> <!-- Altura fija para calc() -->
-            <!-- AÑADIDO: id="header-nav" para el JS -->
-            <!-- AÑADIDO: relative -->
-            <nav id="header-nav" class="container mx-auto px-6 py-4 flex justify-between items-center h-full transition-all duration-300 relative">
+    <!-- Encabezado (Se scrollea con la página) -->
+    <header id="main-header">
+        <div class="container mx-auto px-6 h-full">
+            <div class="flex-grow flex justify-between items-center h-full relative">
                 <!-- Logo -->
                 <a href="#" class="logo text-4xl text-white">DEVS</a>
                 
-                <!-- INICIO: Contenedor Derecho (para superponer iconos y tabs) -->
-                <div class="relative flex items-center h-full">
-
-                    <!-- Iconos Sociales (Original) -->
-                    <!-- AÑADIDO: style para transicion -->
-                    <div id="header-social-icons" class="flex space-x-5 items-center" style="transition: all 0.3s ease;">
-                        <!-- Reemplaza '#' con tus enlaces reales -->
-                        <a href="https://whatsapp.com/channel/0029VaDgLlM2kNFqDttPUZ1E" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-                            <i class="fa-brands fa-whatsapp header-social-icon"></i>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61574892055228" target="_blank" rel="noopener noreferrer" title="Facebook">
-                            <i class="fa-brands fa-facebook header-social-icon"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@devs-latam" target="_blank" rel="noopener noreferrer" title="YouTube">
-                            <i class="fa-brands fa-youtube header-social-icon"></i>
-                        </a>
-                    </div>
-
-                    <!-- Tabs (Clon, inicialmente oculto) -->
-                    <!-- AÑADIDO: Contenedor para el clon de los tabs -->
-                    <div id="header-tabs-clone-container" class="absolute top-0 right-0 h-full flex items-center opacity-0" style="transition: all 0.3s ease; transform: translateY(10px);">
-                        <!-- El clon de los tabs se insertará aquí con JS -->
-                    </div>
-
+                <!-- Iconos Sociales (Original) -->
+                <div id="header-social-icons" class="flex space-x-5 items-center">
+                    <a href="https://whatsapp.com/channel/0029VaDgLlM2kNFqDttPUZ1E" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp header-social-icon"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61574892055228" target="_blank" rel="noopener noreferrer" title="Facebook">
+                        <i class="fa-brands fa-facebook header-social-icon"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@devs-latam" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <i class="fa-brands fa-youtube header-social-icon"></i>
+                    </a>
                 </div>
-                <!-- FIN: Contenedor Derecho -->
-            </nav>
-        </header>
+            </div>
+        </div>
+    </header>
 
-        <!-- 
-          Contenido Principal 
-          - AHORA DENTRO del div de scroll.
-          - Añadido '-mt-[4.5rem]' para jalar el contenido hacia arriba 
-            y que se deslice DETRÁS del header 'sticky'.
-        -->
-        <!-- MODIFICADO: Eliminado el 'min-h-[100dvh]' de la sección de presentación y se ajustó el padding superior -->
-        <main class="-mt-[4.5rem] pt-24"> <!-- pt-24 (6rem) = 4.5rem de header + 1.5rem de espacio -->
-        
-            <!-- SECCIÓN: Presentación y Estadísticas (ELIMINADA) -->
+    <!-- Contenido Principal -->
+    <main>
     
-            <!-- Contenedor para el resto del contenido (con márgenes y padding) -->
-            <!-- MODIFICADO: Se movió el container aquí para envolver el contenido -->
-            <div class="container mx-auto px-6">
+        <!-- 
+            Navegación SPA (Tabs) - Contenedor Wrapper 
+            - Ocupa el ancho completo de la pantalla (fuera del container).
+            - 'sticky top-0' lo pega al borde superior de la pantalla al hacer scroll.
+            - 'overflow-x-auto' permite scroll horizontal.
+            - 'px-6' alinea los botones con el contenido.
+        -->
+        <!-- MODIFICADO: Se añadió 'py-2' para un padding vertical ligero -->
+        <div id="nav-tabs-wrapper" class="transition-all duration-300 sticky top-0 z-40 bg-[#141414] overflow-x-auto px-6 py-2">
+            <!-- Contenedor de los botones - SIN BORDE -->
+            <div id="nav-tabs-container" class="p-1 rounded-lg bg-[#141414] inline-flex space-x-2">
+                <button id="tab-grupos" class="nav-tab active">Grupos</button>
+                <button id="tab-admins" class="nav-tab">Admins</button>
+                <button id="tab-recursos" class="nav-tab">Recursos</button>
+                <button id="tab-eventos" class="nav-tab">Eventos</button>
+            </div>
+        </div>
+
+        <!-- Contenedor para el contenido (con márgenes y padding) -->
+        <div class="container mx-auto px-6">
+        
+            <!-- Sección de Grupos (visible por defecto) -->
+            <section id="content-grupos" class="content-section pt-8">
+                <!-- MODIFICADO: text-left en móvil, md:text-center -->
+                <div class="text-left md:text-center mb-10">
+                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Grupos de la Comunidad</h2>
+                    <!-- MODIFICADO: text-base, md:text-lg -->
+                    <p class="text-base md:text-lg text-gray-400">Explora y únete a nuestros grupos de WhatsApp para conectar y aprender.</p>
+                </div>
+                <div id="grupos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <p class="text-gray-400 col-span-full text-center">Cargando grupos...</p>
+                </div>
+            </section>
             
-                <!-- Navegación SPA (Tabs) -->
-                <!-- AÑADIDO: id="nav-tabs-wrapper" -->
-                <div id="nav-tabs-wrapper" class="flex justify-center my-12 transition-all duration-300">
-                    <!-- AÑADIDO: id="nav-tabs-container" -->
-                    <div id="nav-tabs-container" class="flex space-x-2 border border-neutral-700 p-1 rounded-lg bg-[#141414]">
-                        <button id="tab-grupos" class="nav-tab active">Grupos</button>
-                        <button id="tab-admins" class="nav-tab">Admins</button>
-                        <button id="tab-recursos" class="nav-tab">Recursos</button>
-                    </div>
+            <!-- Sección de Administradores (oculta por defecto) -->
+            <section id="content-admins" class="content-section hidden pt-8">
+                <!-- MODIFICADO: text-left en móvil, md:text-center -->
+                <div class="text-left md:text-center mb-10">
+                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Administradores</h2>
+                    <!-- MODIFICADO: text-base, md:text-lg -->
+                    <p class="text-base md:text-lg text-gray-400">El equipo que mantiene viva y ordenada a la comunidad.</p>
                 </div>
-        
-                <!-- Sección de Grupos (visible por defecto) -->
-                <section id="content-grupos" class="content-section">
-                    <div class="text-center mb-10">
-                        <h2 class="text-4xl font-bold text-white mb-4">Grupos de la Comunidad</h2>
-                        <p class="text-lg text-gray-400">Explora y únete a nuestros grupos de WhatsApp para conectar y aprender.</p>
-                    </div>
-                    
-                    <!-- Contenedor de la cuadrícula de grupos -->
-                    <div id="grupos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Las tarjetas de grupo se insertarán aquí por JS -->
-                        <p class="text-gray-400 col-span-full text-center">Cargando grupos...</p>
-                    </div>
-                </section>
-                
-                <!-- Sección de Administradores (oculta por defecto) -->
-                <section id="content-admins" class="content-section hidden">
-                    <div class="text-center mb-10">
-                        <h2 class="text-4xl font-bold text-white mb-4">Administradores</h2>
-                        <p class="text-lg text-gray-400">El equipo que mantiene viva y ordenada a la comunidad.</p>
-                    </div>
-                    
-                    <!-- Contenedor de la cuadrícula de admins -->
-                    <div id="admins-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Las tarjetas de admin se insertarán aquí por JS -->
-                    </div>
-                </section>
+                <div id="admins-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Las tarjetas de admin se insertarán aquí por JS -->
+                </div>
+            </section>
 
-                <!-- Sección de Recursos (oculta por defecto) -->
-                <section id="content-recursos" class="content-section hidden">
-                    <div class="text-center mb-10">
-                        <h2 class="text-4xl font-bold text-white mb-4">Recursos de la Comunidad</h2>
-                        <p class="text-lg text-gray-400">Carpetas de Drive con material de estudio, cursos y herramientas.</p>
-                    </div>
-                    
-                    <!-- Contenedor de la cuadrícula de recursos -->
-                    <div id="recursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Las tarjetas de recursos se insertarán aquí por JS -->
-                        <p class="text-gray-400 col-span-full text-center">Cargando recursos...</p>
-                    </div>
-                </section>
-            </div> <!-- Fin del container para el contenido principal -->
-    
-        </main>
-    
-        <!-- 
-          Footer 
-          - AHORA DENTRO del div de scroll.
-        -->
-        <footer class="container mx-auto px-6 py-8 mt-16 border-t border-neutral-800">
-            <p class="text-center text-gray-500">&copy; 2025 Comunidad DEVS. Todos los derechos reservados.</p>
-        </footer>
+            <!-- Sección de Recursos (oculta por defecto) -->
+            <section id="content-recursos" class="content-section hidden pt-8">
+                <!-- MODIFICADO: text-left en móvil, md:text-center -->
+                <div class="text-left md:text-center mb-10">
+                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Recursos de la Comunidad</h2>
+                    <!-- MODIFICADO: text-base, md:text-lg -->
+                    <p class="text-base md:text-lg text-gray-400">Carpetas de Drive con material de estudio, cursos y herramientas.</p>
+                </div>
+                <div id="recursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <p class="text-gray-400 col-span-full text-center">Cargando recursos...</p>
+                </div>
+            </section>
 
-    </div> <!-- FIN DEL CONTENEDOR DE SCROLL ÚNICO -->
+            <!-- Sección de Eventos (oculta por defecto) -->
+            <section id="content-eventos" class="content-section hidden pt-8">
+                <!-- MODIFICADO: text-left en móvil, md:text-center -->
+                <div class="text-left md:text-center mb-10">
+                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Próximos Eventos</h2>
+                    <!-- MODIFICADO: text-base, md:text-lg -->
+                    <p class="text-base md:text-lg text-gray-400">¡Participa! Workshops, charlas y hackathons de la comunidad.</p>
+                </div>
+                <div id="eventos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <p class="text-gray-400 col-span-full text-center">Cargando eventos...</p>
+                </div>
+            </section>
 
+        </div> <!-- Fin del container para el contenido principal -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="container mx-auto px-6 py-8 mt-16 border-t border-neutral-800">
+        <p class="text-center text-gray-500">&copy; 2025 Comunidad DEVS. Todos los derechos reservados.</p>
+    </footer>
 
     <!-- Plantillas de Tarjetas (para clonar con JS) -->
     <template id="grupo-card-template">
@@ -252,31 +235,20 @@
     </template>
     
     <template id="admin-card-template">
-        <!-- Nuevo diseño de tarjeta de Admin -->
         <div class="card-border rounded-xl overflow-hidden h-full flex flex-col">
-            <!-- Imagen de fondo (Ahora usa el 'banner' del JSON) -->
             <div class="admin-banner h-24 bg-cover bg-center relative" style="background-image: url('img/default_banner.png');">
-                <!-- Overlay oscuro -->
                 <div class="absolute inset-0 bg-black opacity-40"></div>
-                <!-- Foto de perfil -->
                 <img src="img/default_profile.png" alt="Foto de perfil" class="admin-foto absolute bottom-0 left-6 w-20 h-20 rounded-full border-4 border-[#171717] transform translate-y-1/2">
             </div>
-            
-            <!-- Contenido de la tarjeta -->
             <div class="pt-14 p-6 flex flex-col flex-grow">
-                <!-- Nombre y Descripción -->
                 <h3 class="admin-nombre text-2xl font-bold text-white"></h3>
                 <p class="admin-desc text-blue-400 text-sm mb-4"></p>
-                
-                <!-- Grupos que administra -->
                 <div>
                     <h4 class="text-xs font-semibold text-gray-400 uppercase mb-2">Administra</h4>
                     <div class="admin-grupos flex flex-wrap gap-2">
                         <!-- Tags de grupos se insertan aquí -->
                     </div>
                 </div>
-                
-                <!-- Links Sociales (al final) -->
                 <div class="admin-links mt-auto pt-4 flex space-x-4">
                     <!-- Iconos sociales se insertan aquí -->
                 </div>
@@ -284,12 +256,11 @@
         </div>
     </template>
 
-    <!-- Plantilla de Tarjeta para Recursos -->
     <template id="recurso-card-template">
         <a href="#" target="_blank" rel="noopener noreferrer" class="recurso-card-link block h-full">
             <div class="card-border p-6 rounded-xl h-full flex flex-col">
                 <div class="flex items-center mb-4">
-                    <!-- Icono de Google Drive -->
+                    <!-- Icono actualizado de Font Awesome para Google Drive -->
                     <i class="fa-brands fa-google-drive text-4xl text-blue-400 w-12 h-12 text-center pt-1"></i>
                     <h3 class="recurso-titulo text-xl font-bold text-white ml-4"></h3>
                 </div>
@@ -303,6 +274,31 @@
         </a>
     </template>
 
+    <template id="evento-card-template">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="evento-card-link block h-full">
+            <div class="card-border rounded-xl overflow-hidden h-full flex flex-col">
+                <!-- Imagen -->
+                <img src="" alt="" class="evento-imagen w-full h-48 object-cover">
+                
+                <!-- Contenido -->
+                <div class="p-5 flex flex-col flex-grow">
+                    <!-- Fecha y Hora -->
+                    <p class="evento-fecha text-blue-400 text-sm font-medium mb-2"></p>
+                    <!-- Título -->
+                    <h3 class="evento-titulo text-xl font-bold text-white mb-3"></h3>
+                    <!-- Descripción -->
+                    <p class="evento-descripcion text-gray-400 text-sm flex-grow"></p>
+                    <!-- Botón (al final) -->
+                    <div class="mt-5">
+                        <span class="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                            Más información &rarr;
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </template>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
@@ -310,184 +306,92 @@
             const tabGrupos = document.getElementById('tab-grupos');
             const tabAdmins = document.getElementById('tab-admins');
             const tabRecursos = document.getElementById('tab-recursos');
+            const tabEventos = document.getElementById('tab-eventos');
+            
             const contentGrupos = document.getElementById('content-grupos');
             const contentAdmins = document.getElementById('content-admins');
             const contentRecursos = document.getElementById('content-recursos');
+            const contentEventos = document.getElementById('content-eventos');
+
+            // --- Lógica de Scroll Suave ---
+            const navTabsWrapper = document.getElementById('nav-tabs-wrapper');
+
+            // Función para hacer scroll a la sección correcta
+            const scrollToGrid = (gridElement) => {
+                if (!gridElement || !navTabsWrapper) return;
+                
+                const tabsHeight = navTabsWrapper.offsetHeight;
+                const stickyTopHeight = tabsHeight; // Solo es la altura de los tabs
+
+                const gridTop = gridElement.getBoundingClientRect().top + window.scrollY;
+                
+                window.scrollTo({
+                    /* MODIFICADO: Se eliminó el '- 20' extra */
+                    top: gridTop - stickyTopHeight,
+                    behavior: 'smooth'
+                });
+            };
             
-            if (tabGrupos && tabAdmins && tabRecursos && contentGrupos && contentAdmins && contentRecursos) {
+            if (tabGrupos && tabAdmins && tabRecursos && tabEventos && contentGrupos && contentAdmins && contentRecursos && contentEventos) {
+                
                 tabGrupos.addEventListener('click', () => {
                     tabGrupos.classList.add('active');
                     tabAdmins.classList.remove('active');
                     tabRecursos.classList.remove('active');
+                    tabEventos.classList.remove('active');
+                    
                     contentGrupos.classList.remove('hidden');
                     contentAdmins.classList.add('hidden');
                     contentRecursos.classList.add('hidden');
+                    contentEventos.classList.add('hidden');
+                    scrollToGrid(contentGrupos);
                 });
                 
                 tabAdmins.addEventListener('click', () => {
                     tabAdmins.classList.add('active');
                     tabGrupos.classList.remove('active');
                     tabRecursos.classList.remove('active');
+                    tabEventos.classList.remove('active');
+
                     contentAdmins.classList.remove('hidden');
                     contentGrupos.classList.add('hidden');
                     contentRecursos.classList.add('hidden');
+                    contentEventos.classList.add('hidden');
+                    scrollToGrid(contentAdmins);
                 });
 
                 tabRecursos.addEventListener('click', () => {
                     tabRecursos.classList.add('active');
                     tabGrupos.classList.remove('active');
                     tabAdmins.classList.remove('active');
+                    tabEventos.classList.remove('active');
+
                     contentRecursos.classList.remove('hidden');
                     contentGrupos.classList.add('hidden');
                     contentAdmins.classList.add('hidden');
+                    contentEventos.classList.add('hidden');
+                    scrollToGrid(contentRecursos);
+                });
+
+                tabEventos.addEventListener('click', () => {
+                    tabEventos.classList.add('active');
+                    tabGrupos.classList.remove('active');
+                    tabAdmins.classList.remove('active');
+                    tabRecursos.classList.remove('active');
+
+                    contentEventos.classList.remove('hidden');
+                    contentGrupos.classList.add('hidden');
+                    contentAdmins.classList.add('hidden');
+                    contentRecursos.classList.add('hidden');
+                    scrollToGrid(contentEventos);
                 });
             }
-
-            // --- INICIO: Lógica de Tabs Progresivos ---
-            const scrollContainer = document.getElementById('main-scroll-container');
-            const header = document.querySelector('header');
-            const socialIcons = document.getElementById('header-social-icons'); 
-            const originalTabsWrapper = document.getElementById('nav-tabs-wrapper');
-            const originalTabsContainer = document.getElementById('nav-tabs-container');
-            const headerTabsCloneContainer = document.getElementById('header-tabs-clone-container');
-
-            if (scrollContainer && header && socialIcons && originalTabsWrapper && originalTabsContainer && headerTabsCloneContainer) {
-                
-                // 1. Crear el Clon de los Tabs
-                const clonedTabs = originalTabsContainer.cloneNode(true);
-                clonedTabs.id = 'nav-tabs-container-clone';
-                clonedTabs.style.border = 'none';
-                clonedTabs.style.padding = '0';
-                clonedTabs.style.margin = '0';
-                clonedTabs.style.background = 'transparent';
-                
-                // Ajustar estilo de botones clonados
-                clonedTabs.querySelectorAll('.nav-tab').forEach(tab => {
-                    tab.style.padding = '4px 10px'; // Un poco más pequeños
-                    tab.style.fontSize = '0.875rem'; // 14px
-                });
-                
-                headerTabsCloneContainer.appendChild(clonedTabs);
-
-                // 2. Sincronizar Clicks
-                const cloneTabGrupos = clonedTabs.querySelector('#tab-grupos');
-                const cloneTabAdmins = clonedTabs.querySelector('#tab-admins');
-                const cloneTabRecursos = clonedTabs.querySelector('#tab-recursos');
-                
-                // --- INICIO: Nueva función de Scroll ---
-                const scrollToGrid = (gridId) => {
-                    // Esperar un instante para que la sección se haga visible
-                    setTimeout(() => {
-                        const targetElement = document.getElementById(gridId);
-                        if (!targetElement) return;
-
-                        const scrollContainerTop = scrollContainer.getBoundingClientRect().top;
-                        const targetElementTop = targetElement.getBoundingClientRect().top;
-                        const currentScroll = scrollContainer.scrollTop;
-                        const headerHeight = header.offsetHeight; // 'header' viene del scope exterior
-
-                        // Calculamos la posición final
-                        const targetScrollTop = targetElementTop - scrollContainerTop + currentScroll - headerHeight - 20; // 20px de padding
-
-                        scrollContainer.scrollTo({
-                            top: targetScrollTop,
-                            behavior: 'smooth'
-                        });
-                    }, 50); // 50ms de espera para asegurar que el DOM se actualice
-                };
-                // --- FIN: Nueva función de Scroll ---
-                
-                cloneTabGrupos.addEventListener('click', () => {
-                    tabGrupos.click(); // Primero cambia la pestaña
-                    // Solo haz scroll si los tabs fijos están visibles
-                    if (isTabsFixed) {
-                        scrollToGrid('grupos-grid');
-                    }
-                });
-                
-                cloneTabAdmins.addEventListener('click', () => {
-                    tabAdmins.click(); // Primero cambia la pestaña
-                    // Solo haz scroll si los tabs fijos están visibles
-                    if (isTabsFixed) {
-                        scrollToGrid('admins-grid');
-                    }
-                });
-
-                cloneTabRecursos.addEventListener('click', () => {
-                    tabRecursos.click(); // Primero cambia la pestaña
-                    // Solo haz scroll si los tabs fijos están visibles
-                    if (isTabsFixed) {
-                        scrollToGrid('recursos-grid');
-                    }
-                });
-
-                // 3. Sincronizar Estado 'active'
-                const syncActiveState = () => {
-                    cloneTabGrupos.classList.toggle('active', tabGrupos.classList.contains('active'));
-                    cloneTabAdmins.classList.toggle('active', tabAdmins.classList.contains('active'));
-                    cloneTabRecursos.classList.toggle('active', tabRecursos.classList.contains('active'));
-                };
-                
-                // Usar MutationObserver para detectar cambios de clase en los tabs originales
-                const observer = new MutationObserver(syncActiveState);
-                observer.observe(tabGrupos, { attributes: true, attributeFilter: ['class'] });
-                observer.observe(tabAdmins, { attributes: true, attributeFilter: ['class'] });
-                observer.observe(tabRecursos, { attributes: true, attributeFilter: ['class'] });
-
-                // 4. Lógica de Scroll Progresivo
-                const headerHeight = header.offsetHeight;
-                let isTabsFixed = false; // Estado para evitar cambios redundantes
-
-                scrollContainer.addEventListener('scroll', () => {
-                    // Obtener la posición DEL FONDO del contenedor original
-                    const tabsBottom = originalTabsWrapper.getBoundingClientRect().bottom;
-                    
-                    // Condición: El fondo del contenedor original está ARRIBA (o tocando) el fondo del header
-                    // Es decir, el header lo ha cubierto por completo.
-                    if (tabsBottom <= headerHeight) {
-                        // Activar modo fijo (si no lo está ya)
-                        if (isTabsFixed) return;
-                        isTabsFixed = true;
-                        
-                        // Ocultar iconos, mostrar tabs clonados (con transición)
-                        socialIcons.style.opacity = '0';
-                        socialIcons.style.transform = 'translateY(-10px)';
-                        headerTabsCloneContainer.style.opacity = '1';
-                        headerTabsCloneContainer.style.transform = 'translateY(0)';
-                        
-                        // Ocultar tabs originales
-                        originalTabsWrapper.style.opacity = '0';
-                        
-                        // Poner fondo al header
-                        header.classList.add('header-tabs-mode');
-
-                    } else {
-                        // Desactivar modo fijo (si no lo está ya)
-                        // Esto se activa en cuanto el fondo del contenedor vuelve a ser visible
-                        if (!isTabsFixed) return;
-                        isTabsFixed = false;
-                        
-                        // Mostrar iconos, ocultar tabs clonados (con transición)
-                        socialIcons.style.opacity = '1';
-                        socialIcons.style.transform = 'translateY(0)';
-                        headerTabsCloneContainer.style.opacity = '0';
-                        headerTabsCloneContainer.style.transform = 'translateY(10px)'; // Coincide con el CSS inicial
-                        
-                        // Mostrar tabs originales
-                        originalTabsWrapper.style.opacity = '1';
-
-                        // Quitar fondo al header
-                        header.classList.remove('header-tabs-mode');
-                    }
-                });
-            }
-            // --- FIN: Lógica de Tabs Progresivos ---
-
 
             // --- Cargar Datos y Renderizar ---
             const gruposGridEl = document.getElementById('grupos-grid');
             const adminsGridEl = document.getElementById('admins-grid');
             const recursosGridEl = document.getElementById('recursos-grid');
+            const eventosGridEl = document.getElementById('eventos-grid');
 
             // Cargar Grupos
             fetch('grupos.json')
@@ -503,7 +407,7 @@
                     if (gruposGridEl) gruposGridEl.innerHTML = '<p class="text-red-400 col-span-full text-center">Error al cargar los grupos.</p>';
                 });
 
-            // Cargar Admins y Miembros Totales
+            // Cargar Admins
             fetch('admins.json')
                 .then(response => {
                     if (!response.ok) throw new Error('No se pudo cargar admins.json');
@@ -531,24 +435,35 @@
                     if (recursosGridEl) recursosGridEl.innerHTML = '<p class="text-red-400 col-span-full text-center">Error al cargar los recursos.</p>';
                 });
             
+            // Cargar Eventos
+            fetch('eventos.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('No se pudo cargar eventos.json');
+                    return response.json();
+                })
+                .then(eventosData => {
+                    renderizarEventos(eventosData, eventosGridEl);
+                })
+                .catch(error => {
+                    console.error('Error al cargar eventos:', error);
+                    if (eventosGridEl) eventosGridEl.innerHTML = '<p class="text-red-400 col-span-full text-center">Error al cargar los eventos.</p>';
+                });
+            
             // --- Funciones de Renderizado ---
 
             function renderizarGrupos(gruposData, container) {
                 if (!container) return;
                 const grupoTemplate = document.getElementById('grupo-card-template');
-                container.innerHTML = ''; // Limpiar "Cargando..."
+                container.innerHTML = ''; 
 
                 gruposData.forEach(grupo => {
                     const card = grupoTemplate.content.cloneNode(true);
-                    
                     card.querySelector('.grupo-card-link').href = grupo.link;
                     const imgEl = card.querySelector('.grupo-imagen');
-                    imgEl.src = grupo.imagen || 'img/default_group.png'; // Fallback
+                    imgEl.src = grupo.imagen || 'img/default_group.png';
                     imgEl.alt = `Logo de ${grupo.titulo}`;
-                    
                     card.querySelector('.grupo-titulo').textContent = grupo.titulo;
                     card.querySelector('.grupo-descripcion').textContent = grupo.descripcion;
-                    
                     container.appendChild(card);
                 });
             }
@@ -560,24 +475,15 @@
                 
                 adminsData.forEach(admin => {
                     const card = adminTemplate.content.cloneNode(true);
-                    
                     const fotoSrc = admin.foto || 'img/default_profile.png';
-                    
-                    // Fondo de la tarjeta (Ahora usa el 'banner' del JSON)
-                    const bgEl = card.querySelector('.admin-banner');
-                    // Actualizado: Usar el banner del JSON, o la foto de perfil como fallback
                     const bannerSrc = admin.banner || fotoSrc; 
-                    bgEl.style.backgroundImage = `url('${bannerSrc}')`;
-                    
-                    // Foto de perfil principal
+                    card.querySelector('.admin-banner').style.backgroundImage = `url('${bannerSrc}')`;
                     const fotoEl = card.querySelector('.admin-foto');
                     fotoEl.src = fotoSrc;
                     fotoEl.alt = `Foto de ${admin.nombre}`;
-                    
                     card.querySelector('.admin-nombre').textContent = admin.nombre;
                     card.querySelector('.admin-desc').textContent = admin.descripcion;
                     
-                    // Grupos que administra
                     const gruposContainer = card.querySelector('.admin-grupos');
                     admin.grupos.forEach(nombreGrupo => {
                         const tag = document.createElement('span');
@@ -586,7 +492,6 @@
                         gruposContainer.appendChild(tag);
                     });
                     
-                    // Links Sociales
                     const linksContainer = card.querySelector('.admin-links');
                     admin.links.forEach(link => {
                         const a = document.createElement('a');
@@ -594,12 +499,10 @@
                         a.target = "_blank";
                         a.rel = "noopener noreferrer";
                         a.className = "text-gray-400 hover:text-white transition-colors";
-                        
                         let iconClass = '';
                         if (link.tipo === 'github') iconClass = 'fa-brands fa-github';
                         else if (link.tipo === 'linkedin') iconClass = 'fa-brands fa-linkedin';
-                        else iconClass = 'fa-solid fa-link'; // Icono genérico
-                        
+                        else iconClass = 'fa-solid fa-link';
                         a.innerHTML = `<i class="${iconClass} text-2xl"></i>`;
                         linksContainer.appendChild(a);
                     });
@@ -611,14 +514,47 @@
             function renderizarRecursos(recursosData, container) {
                 if (!container) return;
                 const recursoTemplate = document.getElementById('recurso-card-template');
-                container.innerHTML = ''; // Limpiar "Cargando..."
+                container.innerHTML = '';
 
                 recursosData.forEach(recurso => {
                     const card = recursoTemplate.content.cloneNode(true);
-                    
                     card.querySelector('.recurso-card-link').href = recurso.link;
                     card.querySelector('.recurso-titulo').textContent = recurso.titulo;
                     card.querySelector('.recurso-descripcion').textContent = recurso.descripcion;
+                    container.appendChild(card);
+                });
+            }
+
+            function renderizarEventos(eventosData, container) {
+                if (!container) return;
+                const eventoTemplate = document.getElementById('evento-card-template');
+                container.innerHTML = '';
+
+                const formatter = new Intl.DateTimeFormat('es-ES', {
+                    dateStyle: 'long',
+                    timeStyle: 'short',
+                    timeZone: 'UTC' // Ajusta esto si tus fechas no son UTC
+                });
+
+                eventosData.forEach(evento => {
+                    const card = eventoTemplate.content.cloneNode(true);
+                    
+                    card.querySelector('.evento-card-link').href = evento.link;
+                    const imgEl = card.querySelector('.evento-imagen');
+                    imgEl.src = evento.imagen || 'https://placehold.co/600x600/141414/FFFFFF?text=Evento';
+                    imgEl.alt = `Banner de ${evento.titulo}`;
+                    
+                    // Formatear fecha
+                    try {
+                        const fecha = new Date(evento.fecha_inicio);
+                        card.querySelector('.evento-fecha').textContent = formatter.format(fecha);
+                    } catch (e) {
+                        console.warn('Fecha inválida para el evento:', evento.titulo);
+                        card.querySelector('.evento-fecha').textContent = "Fecha por confirmar";
+                    }
+                    
+                    card.querySelector('.evento-titulo').textContent = evento.titulo;
+                    card.querySelector('.evento-descripcion').textContent = evento.descripcion;
                     
                     container.appendChild(card);
                 });
