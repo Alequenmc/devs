@@ -174,6 +174,7 @@
                     <div id="nav-tabs-container" class="flex space-x-2 border border-neutral-700 p-1 rounded-lg bg-[#141414]">
                         <button id="tab-grupos" class="nav-tab active">Grupos</button>
                         <button id="tab-admins" class="nav-tab">Admins</button>
+                        <button id="tab-recursos" class="nav-tab">Recursos</button>
                     </div>
                 </div>
         
@@ -201,6 +202,20 @@
                     <!-- Contenedor de la cuadrícula de admins -->
                     <div id="admins-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Las tarjetas de admin se insertarán aquí por JS -->
+                    </div>
+                </section>
+
+                <!-- Sección de Recursos (oculta por defecto) -->
+                <section id="content-recursos" class="content-section hidden">
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl font-bold text-white mb-4">Recursos de la Comunidad</h2>
+                        <p class="text-lg text-gray-400">Carpetas de Drive con material de estudio, cursos y herramientas.</p>
+                    </div>
+                    
+                    <!-- Contenedor de la cuadrícula de recursos -->
+                    <div id="recursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Las tarjetas de recursos se insertarán aquí por JS -->
+                        <p class="text-gray-400 col-span-full text-center">Cargando recursos...</p>
                     </div>
                 </section>
             </div> <!-- Fin del container para el contenido principal -->
@@ -269,28 +284,62 @@
         </div>
     </template>
 
+    <!-- Plantilla de Tarjeta para Recursos -->
+    <template id="recurso-card-template">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="recurso-card-link block h-full">
+            <div class="card-border p-6 rounded-xl h-full flex flex-col">
+                <div class="flex items-center mb-4">
+                    <!-- Icono de Google Drive -->
+                    <i class="fa-brands fa-google-drive text-4xl text-blue-400 w-12 h-12 text-center pt-1"></i>
+                    <h3 class="recurso-titulo text-xl font-bold text-white ml-4"></h3>
+                </div>
+                <p class="recurso-descripcion text-gray-400 text-sm flex-grow"></p>
+                <div class="mt-5">
+                    <span class="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                        Ir a Drive &rarr;
+                    </span>
+                </div>
+            </div>
+        </a>
+    </template>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
             // --- Lógica de Pestañas (Tabs) ---
             const tabGrupos = document.getElementById('tab-grupos');
             const tabAdmins = document.getElementById('tab-admins');
+            const tabRecursos = document.getElementById('tab-recursos');
             const contentGrupos = document.getElementById('content-grupos');
             const contentAdmins = document.getElementById('content-admins');
+            const contentRecursos = document.getElementById('content-recursos');
             
-            if (tabGrupos && tabAdmins && contentGrupos && contentAdmins) {
+            if (tabGrupos && tabAdmins && tabRecursos && contentGrupos && contentAdmins && contentRecursos) {
                 tabGrupos.addEventListener('click', () => {
                     tabGrupos.classList.add('active');
                     tabAdmins.classList.remove('active');
+                    tabRecursos.classList.remove('active');
                     contentGrupos.classList.remove('hidden');
                     contentAdmins.classList.add('hidden');
+                    contentRecursos.classList.add('hidden');
                 });
                 
                 tabAdmins.addEventListener('click', () => {
                     tabAdmins.classList.add('active');
                     tabGrupos.classList.remove('active');
+                    tabRecursos.classList.remove('active');
                     contentAdmins.classList.remove('hidden');
                     contentGrupos.classList.add('hidden');
+                    contentRecursos.classList.add('hidden');
+                });
+
+                tabRecursos.addEventListener('click', () => {
+                    tabRecursos.classList.add('active');
+                    tabGrupos.classList.remove('active');
+                    tabAdmins.classList.remove('active');
+                    contentRecursos.classList.remove('hidden');
+                    contentGrupos.classList.add('hidden');
+                    contentAdmins.classList.add('hidden');
                 });
             }
 
@@ -323,6 +372,7 @@
                 // 2. Sincronizar Clicks
                 const cloneTabGrupos = clonedTabs.querySelector('#tab-grupos');
                 const cloneTabAdmins = clonedTabs.querySelector('#tab-admins');
+                const cloneTabRecursos = clonedTabs.querySelector('#tab-recursos');
                 
                 // --- INICIO: Nueva función de Scroll ---
                 const scrollToGrid = (gridId) => {
@@ -363,16 +413,26 @@
                     }
                 });
 
+                cloneTabRecursos.addEventListener('click', () => {
+                    tabRecursos.click(); // Primero cambia la pestaña
+                    // Solo haz scroll si los tabs fijos están visibles
+                    if (isTabsFixed) {
+                        scrollToGrid('recursos-grid');
+                    }
+                });
+
                 // 3. Sincronizar Estado 'active'
                 const syncActiveState = () => {
                     cloneTabGrupos.classList.toggle('active', tabGrupos.classList.contains('active'));
                     cloneTabAdmins.classList.toggle('active', tabAdmins.classList.contains('active'));
+                    cloneTabRecursos.classList.toggle('active', tabRecursos.classList.contains('active'));
                 };
                 
                 // Usar MutationObserver para detectar cambios de clase en los tabs originales
                 const observer = new MutationObserver(syncActiveState);
                 observer.observe(tabGrupos, { attributes: true, attributeFilter: ['class'] });
                 observer.observe(tabAdmins, { attributes: true, attributeFilter: ['class'] });
+                observer.observe(tabRecursos, { attributes: true, attributeFilter: ['class'] });
 
                 // 4. Lógica de Scroll Progresivo
                 const headerHeight = header.offsetHeight;
@@ -427,6 +487,7 @@
             // --- Cargar Datos y Renderizar ---
             const gruposGridEl = document.getElementById('grupos-grid');
             const adminsGridEl = document.getElementById('admins-grid');
+            const recursosGridEl = document.getElementById('recursos-grid');
 
             // Cargar Grupos
             fetch('grupos.json')
@@ -454,6 +515,20 @@
                 .catch(error => {
                     console.error('Error al cargar admins:', error);
                     if (adminsGridEl) adminsGridEl.innerHTML = '<p class="text-red-400 col-span-full text-center">Error al cargar los admins.</p>';
+                });
+
+            // Cargar Recursos
+            fetch('recursos.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('No se pudo cargar recursos.json');
+                    return response.json();
+                })
+                .then(recursosData => {
+                    renderizarRecursos(recursosData, recursosGridEl);
+                })
+                .catch(error => {
+                    console.error('Error al cargar recursos:', error);
+                    if (recursosGridEl) recursosGridEl.innerHTML = '<p class="text-red-400 col-span-full text-center">Error al cargar los recursos.</p>';
                 });
             
             // --- Funciones de Renderizado ---
@@ -528,6 +603,22 @@
                         a.innerHTML = `<i class="${iconClass} text-2xl"></i>`;
                         linksContainer.appendChild(a);
                     });
+                    
+                    container.appendChild(card);
+                });
+            }
+
+            function renderizarRecursos(recursosData, container) {
+                if (!container) return;
+                const recursoTemplate = document.getElementById('recurso-card-template');
+                container.innerHTML = ''; // Limpiar "Cargando..."
+
+                recursosData.forEach(recurso => {
+                    const card = recursoTemplate.content.cloneNode(true);
+                    
+                    card.querySelector('.recurso-card-link').href = recurso.link;
+                    card.querySelector('.recurso-titulo').textContent = recurso.titulo;
+                    card.querySelector('.recurso-descripcion').textContent = recurso.descripcion;
                     
                     container.appendChild(card);
                 });
