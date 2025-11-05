@@ -96,7 +96,7 @@
     ]
   },
   {
-    "nombre": "María Rojas",
+    "nombre": "María Mancilla",
     "descripcion": "Estudiante Universitaria",
     "foto": "img/default_profile.png",
     "banner": "img/default_banner.png",
@@ -154,4 +154,5 @@
   }
 
 ]
+
 
