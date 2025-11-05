@@ -132,6 +132,26 @@
         "url": "https://www.linkedin.com/in/carlosquirozbucio/"
       }
     ]
+  },
+  {
+    "nombre": "Samuel Moscoso",
+    "descripcion": "Estudiante Universitario",
+    "foto": "img/samuel_moscoso.jpeg",
+    "banner": "img/default_banner.png",
+    "grupos": [
+      "Linux/Ubuntu"
+    ],
+    "links": [
+      {
+        "tipo": "github",
+        "url": "https://github.com/xsamuuu"
+      },
+      {
+        "tipo": "linkedin",
+        "url": "https://www.linkedin.com/in/samuel-moscoso-b2b424286/"
+      }
+    ]
   }
 
 ]
+
