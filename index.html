@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" style="scroll-behavior: smooth;"> <!-- Añadido scroll-behavior aquí -->
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,66 +7,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Badeen+Display&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> <!-- CAMBIADO -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         /* Estilo base */
         body {
-            background-color: #141414;
+            background-color: #000000; /* CAMBIADO */
             font-family: 'Montserrat', sans-serif;
             color: #e5e7eb;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         /* Estilo para el logo */
         .logo {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Badeen Display', sans-serif; /* CAMBIADO */
             letter-spacing: 1.5px;
         }
         
         /* Estilo para las tarjetas */
         .card-border {
-            border: 1px solid #262626;
-            background-color: #171717;
+            border: 1px solid #171717; /* CAMBIADO */
+            background-color: #111111; /* CAMBIADO */
             transition: all 0.3s ease;
         }
         
         .card-border:hover {
             transform: translateY(-4px) scale(1.02);
-            border-color: #404040;
+            border-color: #262626; /* CAMBIADO */
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
         
         /* Estilo para los botones de navegación (Tabs) */
         .nav-tab {
-            padding: 8px 20px; /* Ajustado para píldora */
-            border-radius: 9999px; /* rounded-full */
+            padding: 8px 20px;
+            border-radius: 9999px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            
-            /* --- MODIFICACIÓN --- */
-            /* Fondo y color base para botones INACTIVOS */
-            background-color: #1a1a1a; /* bg-neutral-900 */
-            color: #a3a3a3; /* text-neutral-400 */
-            /* --- FIN MODIFICACIÓN --- */
-            
+            background-color: #111111; /* CAMBIADO */
+            color: #a3a3a3;
             border: 1px solid transparent;
-            white-space: nowrap; /* Evita que el texto se parta */
+            white-space: nowrap;
         }
         
         .nav-tab.active {
-            background-color: #262626;
+            background-color: #333333; /* CAMBIADO */
             color: #ffffff;
         }
         
         .nav-tab:not(.active):hover {
-            /* --- MODIFICACIÓN --- */
-            /* Al pasar el mouse, se ve igual que el activo */
-            background-color: #262626;
+            background-color: #333333; /* CAMBIADO */
             color: #ffffff;
-            /* --- FIN MODIFICACIÓN --- */
         }
+        
+        /* REGLA DUPLICADA ELIMINADA */
         
         /* Ocultar contenido inactivo */
         .content-section.hidden {
@@ -76,8 +72,8 @@
         /* Estilos del Header */
         header {
             transition: background-color 0.3s ease, border-color 0.3s ease;
-            height: 4.5rem; /* Altura fija */
-            background-color: #141414;
+            height: 4.5rem;
+            background-color: #000000; /* CAMBIADO */
         }
         
         /* Iconos sociales del header */
@@ -100,18 +96,60 @@
             scrollbar-width: none;  /* Firefox */
         }
 
+        /* --- NUEVO: Estilos para Acordeón de FAQs --- */
+        .faq-item {
+            border-bottom: 1px solid #171717; /* CAMBIADO */
+        }
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 0; /* 24px vertical */
+            text-align: left;
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500; /* medium */
+            color: #ffffff; /* text-white */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            transition: color 0.2s ease;
+        }
+        .faq-question:hover {
+            color: #3b82f6; /* text-blue-500 */
+        }
+        .faq-answer {
+            /* Oculto por defecto */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: #d1d5db; /* text-gray-300 */
+            line-height: 1.75; /* leading-relaxed */
+        }
+        .faq-answer p {
+            padding-bottom: 1.5rem; /* 24px */
+        }
+        .faq-icon {
+            font-size: 0.875rem; /* text-sm */
+            color: #a3a3a3; /* text-neutral-400 */
+            transition: transform 0.3s ease;
+            margin-left: 1rem;
+            flex-shrink: 0; /* Evita que el icono se encoja */
+        }
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        /* --- Fin Estilos Acordeón --- */
+
     </style>
 </head>
 <body class="min-h-screen">
 
-    <!-- Encabezado (Se scrollea con la página) -->
+    <!-- Encabezado -->
     <header id="main-header">
         <div class="container mx-auto px-6 h-full">
             <div class="flex-grow flex justify-between items-center h-full relative">
-                <!-- Logo -->
                 <a href="#" class="logo text-4xl text-white">DEVS</a>
-                
-                <!-- Iconos Sociales (Original) -->
                 <div id="header-social-icons" class="flex space-x-5 items-center">
                     <a href="https://whatsapp.com/channel/0029VaDgLlM2kNFqDttPUZ1E" target="_blank" rel="noopener noreferrer" title="WhatsApp">
                         <i class="fa-brands fa-whatsapp header-social-icon"></i>
@@ -130,62 +168,53 @@
     <!-- Contenido Principal -->
     <main>
     
-        <!-- 
-            Navegación SPA (Tabs) - Contenedor Wrapper 
-            - Ocupa el ancho completo de la pantalla (fuera del container).
-            - 'sticky top-0' lo pega al borde superior de la pantalla al hacer scroll.
-            - 'overflow-x-auto' permite scroll horizontal.
-            - 'px-6' alinea los botones con el contenido.
-        -->
-        <!-- MODIFICADO: Se añadió 'py-2' para un padding vertical ligero -->
-        <div id="nav-tabs-wrapper" class="transition-all duration-300 sticky top-0 z-40 bg-[#141414] overflow-x-auto px-6 py-2">
-            <!-- Contenedor de los botones - SIN BORDE -->
-            <div id="nav-tabs-container" class="p-1 rounded-lg bg-[#141414] inline-flex space-x-2">
+        <!-- Navegación SPA (Tabs) -->
+        <div id="nav-tabs-wrapper" class="transition-all duration-300 sticky top-0 z-40 bg-[#000000] overflow-x-auto px-6 py-2"> <!-- CAMBIADO -->
+            <div id="nav-tabs-container" class="p-1 rounded-lg bg-[#000000] inline-flex space-x-2"> <!-- CAMBIADO -->
                 <button id="tab-grupos" class="nav-tab active">Grupos</button>
                 <button id="tab-admins" class="nav-tab">Admins</button>
                 <button id="tab-recursos" class="nav-tab">Recursos</button>
                 <button id="tab-eventos" class="nav-tab">Eventos</button>
+                <!-- CAMBIADO: Botón Código de Conducta por FAQs -->
+                <button id="tab-faqs" class="nav-tab">FAQs</button>
             </div>
         </div>
 
-        <!-- Contenedor para el contenido (con márgenes y padding) -->
+        <!-- Contenedor para el contenido -->
         <div class="container mx-auto px-6">
         
-            <!-- Sección de Grupos (visible por defecto) -->
+            <!-- Sección de Grupos -->
             <section id="content-grupos" class="content-section pt-8">
-                <!-- MODIFICADO: text-left en móvil, md:text-center -->
                 <div class="text-left md:text-center mb-10">
-                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
                     <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Grupos de la Comunidad</h2>
-                    <!-- MODIFICADO: text-base, md:text-lg -->
                     <p class="text-base md:text-lg text-gray-400">Explora y únete a nuestros grupos de WhatsApp para conectar y aprender.</p>
                 </div>
+                
+                <div class="mb-8 w-full max-w-lg mx-auto">
+                    <input type="search" id="search-grupos" placeholder="Buscar grupos por nombre o tecnología..." class="w-full p-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"> <!-- CAMBIADO -->
+                </div>
+
                 <div id="grupos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <p class="text-gray-400 col-span-full text-center">Cargando grupos...</p>
+                    <p id="grupos-loading" class="text-gray-400 col-span-full text-center">Cargando grupos...</p>
+                    <p id="grupos-no-results" class="text-gray-400 col-span-full text-center hidden">No se encontraron grupos que coincidan con tu búsqueda.</p>
                 </div>
             </section>
             
-            <!-- Sección de Administradores (oculta por defecto) -->
+            <!-- Sección de Administradores -->
             <section id="content-admins" class="content-section hidden pt-8">
-                <!-- MODIFICADO: text-left en móvil, md:text-center -->
                 <div class="text-left md:text-center mb-10">
-                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
                     <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Administradores</h2>
-                    <!-- MODIFICADO: text-base, md:text-lg -->
                     <p class="text-base md:text-lg text-gray-400">El equipo que mantiene viva y ordenada a la comunidad.</p>
                 </div>
                 <div id="admins-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Las tarjetas de admin se insertarán aquí por JS -->
+                    <p class="text-gray-400 col-span-full text-center">Cargando admins...</p>
                 </div>
             </section>
 
-            <!-- Sección de Recursos (oculta por defecto) -->
+            <!-- Sección de Recursos -->
             <section id="content-recursos" class="content-section hidden pt-8">
-                <!-- MODIFICADO: text-left en móvil, md:text-center -->
                 <div class="text-left md:text-center mb-10">
-                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
                     <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Recursos de la Comunidad</h2>
-                    <!-- MODIFICADO: text-base, md:text-lg -->
                     <p class="text-base md:text-lg text-gray-400">Carpetas de Drive con material de estudio, cursos y herramientas.</p>
                 </div>
                 <div id="recursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -193,17 +222,27 @@
                 </div>
             </section>
 
-            <!-- Sección de Eventos (oculta por defecto) -->
+            <!-- Sección de Eventos -->
             <section id="content-eventos" class="content-section hidden pt-8">
-                <!-- MODIFICADO: text-left en móvil, md:text-center -->
                 <div class="text-left md:text-center mb-10">
-                    <!-- MODIFICADO: text-3xl, md:text-4xl, font-semibold -->
                     <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Próximos Eventos</h2>
-                    <!-- MODIFICADO: text-base, md:text-lg -->
                     <p class="text-base md:text-lg text-gray-400">¡Participa! Workshops, charlas y hackathons de la comunidad.</p>
                 </div>
                 <div id="eventos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <p class="text-gray-400 col-span-full text-center">Cargando eventos...</p>
+                </div>
+            </section>
+
+            <!-- NUEVO: Sección FAQs (reemplaza Código de Conducta) -->
+            <section id="content-faqs" class="content-section hidden pt-8">
+                <div class="text-left md:text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Preguntas Frecuentes (FAQs)</h2>
+                    <p class="text-base md:text-lg text-gray-400">Encuentra respuestas a las dudas más comunes de la comunidad.</p>
+                </div>
+                
+                <!-- Contenedor del Acordeón -->
+                <div id="faqs-container" class="max-w-3xl mx-auto">
+                    <p class="text-gray-400 col-span-full text-center">Cargando FAQs...</p>
                 </div>
             </section>
 
@@ -212,11 +251,18 @@
     </main>
 
     <!-- Footer -->
-    <footer class="container mx-auto px-6 py-8 mt-16 border-t border-neutral-800">
-        <p class="text-center text-gray-500">&copy; 2025 Comunidad DEVS. Todos los derechos reservados.</p>
+    <footer class="container mx-auto px-6 py-8 mt-16 border-t border-neutral-900"> <!-- CAMBIADO -->
+        <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <p class="text-gray-500 mb-4 md:mb-0">&copy; 2025 Comunidad DEVS. Todos los derechos reservados.</p>
+            <div class="flex space-x-6">
+                <a href="https://whatsapp.com/channel/0029VaDgLlM2kNFqDttPUZ1E" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors">WhatsApp</a>
+                <a href="https://www.facebook.com/profile.php?id=61574892055228" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors">Facebook</a>
+                <a href="https://www.youtube.com/@devs-latam" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors">YouTube</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Plantillas de Tarjetas (para clonar con JS) -->
+    <!-- Plantillas de Tarjetas (sin cambios) -->
     <template id="grupo-card-template">
         <a href="#" target="_blank" rel="noopener noreferrer" class="grupo-card-link block h-full">
             <div class="card-border p-6 rounded-xl h-full flex flex-col">
@@ -238,7 +284,7 @@
         <div class="card-border rounded-xl overflow-hidden h-full flex flex-col">
             <div class="admin-banner h-24 bg-cover bg-center relative" style="background-image: url('img/default_banner.png');">
                 <div class="absolute inset-0 bg-black opacity-40"></div>
-                <img src="img/default_profile.png" alt="Foto de perfil" class="admin-foto absolute bottom-0 left-6 w-20 h-20 rounded-full border-4 border-[#171717] transform translate-y-1/2">
+                <img src="img/default_profile.png" alt="Foto de perfil" class="admin-foto absolute bottom-0 left-6 w-20 h-20 rounded-full border-4 border-[#111111] transform translate-y-1/2"> <!-- CAMBIADO -->
             </div>
             <div class="pt-14 p-6 flex flex-col flex-grow">
                 <h3 class="admin-nombre text-2xl font-bold text-white"></h3>
@@ -260,7 +306,6 @@
         <a href="#" target="_blank" rel="noopener noreferrer" class="recurso-card-link block h-full">
             <div class="card-border p-6 rounded-xl h-full flex flex-col">
                 <div class="flex items-center mb-4">
-                    <!-- Icono actualizado de Font Awesome para Google Drive -->
                     <i class="fa-brands fa-google-drive text-4xl text-blue-400 w-12 h-12 text-center pt-1"></i>
                     <h3 class="recurso-titulo text-xl font-bold text-white ml-4"></h3>
                 </div>
@@ -277,18 +322,11 @@
     <template id="evento-card-template">
         <a href="#" target="_blank" rel="noopener noreferrer" class="evento-card-link block h-full">
             <div class="card-border rounded-xl overflow-hidden h-full flex flex-col">
-                <!-- Imagen -->
                 <img src="" alt="" class="evento-imagen w-full h-48 object-cover">
-                
-                <!-- Contenido -->
                 <div class="p-5 flex flex-col flex-grow">
-                    <!-- Fecha y Hora -->
                     <p class="evento-fecha text-blue-400 text-sm font-medium mb-2"></p>
-                    <!-- Título -->
                     <h3 class="evento-titulo text-xl font-bold text-white mb-3"></h3>
-                    <!-- Descripción -->
                     <p class="evento-descripcion text-gray-400 text-sm flex-grow"></p>
-                    <!-- Botón (al final) -->
                     <div class="mt-5">
                         <span class="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
                             Más información &rarr;
@@ -307,91 +345,56 @@
             const tabAdmins = document.getElementById('tab-admins');
             const tabRecursos = document.getElementById('tab-recursos');
             const tabEventos = document.getElementById('tab-eventos');
+            const tabFaqs = document.getElementById('tab-faqs'); // CAMBIADO
             
             const contentGrupos = document.getElementById('content-grupos');
             const contentAdmins = document.getElementById('content-admins');
             const contentRecursos = document.getElementById('content-recursos');
             const contentEventos = document.getElementById('content-eventos');
+            const contentFaqs = document.getElementById('content-faqs'); // CAMBIADO
 
             // --- Lógica de Scroll Suave ---
             const navTabsWrapper = document.getElementById('nav-tabs-wrapper');
 
-            // Función para hacer scroll a la sección correcta
             const scrollToGrid = (gridElement) => {
                 if (!gridElement || !navTabsWrapper) return;
-                
                 const tabsHeight = navTabsWrapper.offsetHeight;
-                const stickyTopHeight = tabsHeight; // Solo es la altura de los tabs
-
                 const gridTop = gridElement.getBoundingClientRect().top + window.scrollY;
                 
                 window.scrollTo({
-                    /* MODIFICADO: Se eliminó el '- 20' extra */
-                    top: gridTop - stickyTopHeight,
+                    top: gridTop - tabsHeight,
                     behavior: 'smooth'
                 });
             };
             
-            if (tabGrupos && tabAdmins && tabRecursos && tabEventos && contentGrupos && contentAdmins && contentRecursos && contentEventos) {
+            // Helper para manejar tabs
+            const allTabs = [tabGrupos, tabAdmins, tabRecursos, tabEventos, tabFaqs]; // CAMBIADO
+            const allContent = [contentGrupos, contentAdmins, contentRecursos, contentEventos, contentFaqs]; // CAMBIADO
+
+            const switchTab = (activeTab, activeContent) => {
+                allTabs.forEach(tab => tab.classList.remove('active'));
+                allContent.forEach(content => content.classList.add('hidden'));
                 
-                tabGrupos.addEventListener('click', () => {
-                    tabGrupos.classList.add('active');
-                    tabAdmins.classList.remove('active');
-                    tabRecursos.classList.remove('active');
-                    tabEventos.classList.remove('active');
-                    
-                    contentGrupos.classList.remove('hidden');
-                    contentAdmins.classList.add('hidden');
-                    contentRecursos.classList.add('hidden');
-                    contentEventos.classList.add('hidden');
-                    scrollToGrid(contentGrupos);
-                });
-                
-                tabAdmins.addEventListener('click', () => {
-                    tabAdmins.classList.add('active');
-                    tabGrupos.classList.remove('active');
-                    tabRecursos.classList.remove('active');
-                    tabEventos.classList.remove('active');
+                activeTab.classList.add('active');
+                activeContent.classList.remove('hidden');
+                scrollToGrid(activeContent);
+            };
+            
+            // Asignar eventos
+            if (tabGrupos) tabGrupos.addEventListener('click', () => switchTab(tabGrupos, contentGrupos));
+            if (tabAdmins) tabAdmins.addEventListener('click', () => switchTab(tabAdmins, contentAdmins));
+            if (tabRecursos) tabRecursos.addEventListener('click', () => switchTab(tabRecursos, contentRecursos));
+            if (tabEventos) tabEventos.addEventListener('click', () => switchTab(tabEventos, contentEventos));
+            if (tabFaqs) tabFaqs.addEventListener('click', () => switchTab(tabFaqs, contentFaqs)); // CAMBIADO
 
-                    contentAdmins.classList.remove('hidden');
-                    contentGrupos.classList.add('hidden');
-                    contentRecursos.classList.add('hidden');
-                    contentEventos.classList.add('hidden');
-                    scrollToGrid(contentAdmins);
-                });
-
-                tabRecursos.addEventListener('click', () => {
-                    tabRecursos.classList.add('active');
-                    tabGrupos.classList.remove('active');
-                    tabAdmins.classList.remove('active');
-                    tabEventos.classList.remove('active');
-
-                    contentRecursos.classList.remove('hidden');
-                    contentGrupos.classList.add('hidden');
-                    contentAdmins.classList.add('hidden');
-                    contentEventos.classList.add('hidden');
-                    scrollToGrid(contentRecursos);
-                });
-
-                tabEventos.addEventListener('click', () => {
-                    tabEventos.classList.add('active');
-                    tabGrupos.classList.remove('active');
-                    tabAdmins.classList.remove('active');
-                    tabRecursos.classList.remove('active');
-
-                    contentEventos.classList.remove('hidden');
-                    contentGrupos.classList.add('hidden');
-                    contentAdmins.classList.add('hidden');
-                    contentRecursos.classList.add('hidden');
-                    scrollToGrid(contentEventos);
-                });
-            }
 
             // --- Cargar Datos y Renderizar ---
             const gruposGridEl = document.getElementById('grupos-grid');
             const adminsGridEl = document.getElementById('admins-grid');
             const recursosGridEl = document.getElementById('recursos-grid');
             const eventosGridEl = document.getElementById('eventos-grid');
+            const gruposLoadingEl = document.getElementById('grupos-loading');
+            const faqsContainerEl = document.getElementById('faqs-container'); // NUEVO
 
             // Cargar Grupos
             fetch('grupos.json')
@@ -401,6 +404,7 @@
                 })
                 .then(gruposData => {
                     renderizarGrupos(gruposData, gruposGridEl);
+                    if (gruposLoadingEl) gruposLoadingEl.classList.add('hidden');
                 })
                 .catch(error => {
                     console.error('Error al cargar grupos:', error);
@@ -449,6 +453,20 @@
                     if (eventosGridEl) eventosGridEl.innerHTML = '<p class="text-red-400 col-span-full text-center">Error al cargar los eventos.</p>';
                 });
             
+            // NUEVO: Cargar FAQs
+            fetch('faqs.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('No se pudo cargar faqs.json');
+                    return response.json();
+                })
+                .then(faqsData => {
+                    renderizarFaqs(faqsData, faqsContainerEl);
+                })
+                .catch(error => {
+                    console.error('Error al cargar FAQs:', error);
+                    if (faqsContainerEl) faqsContainerEl.innerHTML = '<p class="text-red-400 col-span-full text-center">Error al cargar las preguntas frecuentes.</p>';
+                });
+            
             // --- Funciones de Renderizado ---
 
             function renderizarGrupos(gruposData, container) {
@@ -458,7 +476,10 @@
 
                 gruposData.forEach(grupo => {
                     const card = grupoTemplate.content.cloneNode(true);
-                    card.querySelector('.grupo-card-link').href = grupo.link;
+                    const linkElement = card.querySelector('.grupo-card-link');
+                    linkElement.href = grupo.link;
+                    linkElement.dataset.searchText = `${grupo.titulo.toLowerCase()} ${grupo.descripcion.toLowerCase()}`;
+                    
                     const imgEl = card.querySelector('.grupo-imagen');
                     imgEl.src = grupo.imagen || 'img/default_group.png';
                     imgEl.alt = `Logo de ${grupo.titulo}`;
@@ -466,6 +487,12 @@
                     card.querySelector('.grupo-descripcion').textContent = grupo.descripcion;
                     container.appendChild(card);
                 });
+                
+                const noResultsEl = document.createElement('p');
+                noResultsEl.id = 'grupos-no-results';
+                noResultsEl.className = 'text-gray-400 col-span-full text-center hidden';
+                noResultsEl.textContent = 'No se encontraron grupos que coincidan con tu búsqueda.';
+                container.appendChild(noResultsEl);
             }
             
             function renderizarAdmins(adminsData, container) {
@@ -487,7 +514,7 @@
                     const gruposContainer = card.querySelector('.admin-grupos');
                     admin.grupos.forEach(nombreGrupo => {
                         const tag = document.createElement('span');
-                        tag.className = "px-2 py-0.5 bg-neutral-800 text-blue-300 text-xs font-medium rounded-full";
+                        tag.className = "px-2 py-0.5 bg-neutral-900 text-blue-300 text-xs font-medium rounded-full"; /* CAMBIADO */
                         tag.textContent = nombreGrupo;
                         gruposContainer.appendChild(tag);
                     });
@@ -533,7 +560,7 @@
                 const formatter = new Intl.DateTimeFormat('es-ES', {
                     dateStyle: 'long',
                     timeStyle: 'short',
-                    timeZone: 'UTC' // Ajusta esto si tus fechas no son UTC
+                    timeZone: 'UTC' 
                 });
 
                 eventosData.forEach(evento => {
@@ -541,10 +568,9 @@
                     
                     card.querySelector('.evento-card-link').href = evento.link;
                     const imgEl = card.querySelector('.evento-imagen');
-                    imgEl.src = evento.imagen || 'https://placehold.co/600x600/141414/FFFFFF?text=Evento';
+                    imgEl.src = evento.imagen || 'https://placehold.co/600x600/000000/FFFFFF?text=Evento'; /* CAMBIADO */
                     imgEl.alt = `Banner de ${evento.titulo}`;
                     
-                    // Formatear fecha
                     try {
                         const fecha = new Date(evento.fecha_inicio);
                         card.querySelector('.evento-fecha').textContent = formatter.format(fecha);
@@ -559,6 +585,82 @@
                     container.appendChild(card);
                 });
             }
+
+            // NUEVA FUNCIÓN: Renderizar FAQs
+            function renderizarFaqs(faqsData, container) {
+                if (!container) return;
+                container.innerHTML = ''; // Limpiar "Cargando..."
+
+                faqsData.forEach(faq => {
+                    // 1. Crear los elementos
+                    const item = document.createElement('div');
+                    item.className = 'faq-item';
+
+                    const questionButton = document.createElement('button');
+                    questionButton.className = 'faq-question';
+                    // Usamos innerHTML para poder incluir el icono
+                    questionButton.innerHTML = `
+                        <span>${faq.pregunta}</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    `;
+
+                    const answerDiv = document.createElement('div');
+                    answerDiv.className = 'faq-answer';
+                    // Creamos un párrafo dentro para el padding
+                    const answerP = document.createElement('p');
+                    answerP.textContent = faq.respuesta;
+                    answerDiv.appendChild(answerP);
+
+                    // 2. Añadir el evento de clic
+                    questionButton.addEventListener('click', () => {
+                        questionButton.classList.toggle('active');
+                        const answer = questionButton.nextElementSibling;
+                        if (answer.style.maxHeight) {
+                            // Si está abierto, ciérralo
+                            answer.style.maxHeight = null;
+                        } else {
+                            // Si está cerrado, ábrelo
+                            // Usamos scrollHeight para darle la altura exacta que necesita
+                            answer.style.maxHeight = answer.scrollHeight + 'px';
+                        }
+                    });
+
+                    // 3. Montar la estructura
+                    item.appendChild(questionButton);
+                    item.appendChild(answerDiv);
+                    container.appendChild(item);
+                });
+            }
+
+            // --- Lógica de Búsqueda ---
+            const searchInput = document.getElementById('search-grupos');
+            if (searchInput && gruposGridEl) {
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    const allGrupos = gruposGridEl.querySelectorAll('.grupo-card-link');
+                    const noResultsEl = document.getElementById('grupos-no-results');
+                    let visibleCount = 0;
+
+                    allGrupos.forEach(grupoCard => {
+                        const searchText = grupoCard.dataset.searchText || '';
+                        if (searchText.includes(searchTerm)) {
+                            grupoCard.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            grupoCard.style.display = 'none';
+                        }
+                    });
+
+                    if (noResultsEl) {
+                        if (visibleCount === 0) {
+                            noResultsEl.classList.remove('hidden');
+                        } else {
+                            noResultsEl.classList.add('hidden');
+                        }
+                    }
+                });
+            }
+
         });
     </script>
 </body>
