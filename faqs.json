@@ -1,0 +1,22 @@
+[
+    {
+        "pregunta": "¿Cómo puedo unirme a un grupo de WhatsApp?",
+        "respuesta": "Simplemente ve a la pestaña 'Grupos', encuentra el grupo que te interesa y haz clic en el botón 'Unirse al grupo'. Esto te redirigirá a WhatsApp."
+    },
+    {
+        "pregunta": "¿Tienen algún costo los grupos o los recursos?",
+        "respuesta": "No. Todo en la Comunidad DEVS es completamente gratuito. Nuestro objetivo es aprender y crecer juntos sin barreras."
+    },
+    {
+        "pregunta": "Incumplí una regla, ¿qué hago?",
+        "respuesta": "Si has sido advertido o expulsado por error, o si quieres apelar una decisión, por favor contacta a uno de los administradores (listados en la pestaña 'Admins') por privado para discutir la situación de manera respetuosa. Te recomendamos leer nuestro Código de Conducta."
+    },
+    {
+        "pregunta": "¿Puedo sugerir un nuevo grupo?",
+        "respuesta": "¡Claro! La comunidad la construimos todos. Contacta a cualquier administrador con tu idea para un nuevo grupo de tecnología y lo evaluaremos."
+    },
+    {
+        "pregunta": "¿Cómo puedo convertirme en administrador?",
+        "respuesta": "Los administradores son miembros activos y de confianza de la comunidad que demuestran liderazgo y ayudan a mantener el orden. Si estás interesado, participa activamente y ayuda a otros. Eventualmente, el equipo de admins puede notar tu contribución y considerarte."
+    }
+]
