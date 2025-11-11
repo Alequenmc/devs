@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Comandos - Bot Moderador</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fuente Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilo para el tag <code> (Dark Mode) */
+        code {
+            background-color: #374151; /* bg-gray-700 */
+            color: #f472b6; /* text-pink-400 */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 p-4 md:p-8">
+
+    <div class="container mx-auto max-w-4xl bg-gray-800 rounded-xl shadow-2xl shadow-blue-500/20 overflow-hidden">
+        <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-6 md:p-10">
+            <h1 class="text-3xl md:text-4xl font-bold">Manual de Comandos</h1>
+            <p class="mt-2 text-lg text-blue-200">Bot de Moderación (v5.2)</p>
+        </header>
+
+        <main class="p-6 md:p-10">
+
+            <!-- Sección de Roles -->
+            <section>
+                <h2 class="text-2xl font-semibold text-gray-100 border-b-2 border-blue-700 pb-2">Roles de Permiso</h2>
+                <p class="mt-4 text-gray-300">El bot utiliza un sistema de permisos basado en la base de datos, independiente de los roles de administrador de WhatsApp.</p>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card Rol Admin -->
+                    <div class="bg-gray-700 border border-blue-700 rounded-lg p-5">
+                        <h3 class="text-xl font-semibold text-blue-300">Rol: <code>admin</code></h3>
+                        <p class="mt-2 text-gray-300">Puede ejecutar comandos de moderación básicos (kick, mute, strikes, etc.) <strong>solo en el grupo donde escribe</strong>. No puede usar el flag <code>--groups</code>.</p>
+                    </div>
+                    <!-- Card Rol Super Admin -->
+                    <div class="bg-gray-700 border border-indigo-700 rounded-lg p-5">
+                        <h3 class="text-xl font-semibold text-indigo-300">Rol: <code>superadmin</code></h3>
+                        <p class="mt-2 text-gray-300">Acceso total. Puede usar <strong>todos</strong> los comandos, incluyendo configuración global, gestión de permisos y el flag <code>--groups</code> para afectar a múltiples grupos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comando de Registro -->
+            <section class="mt-10">
+                <h2 class="text-2xl font-semibold text-gray-100 border-b-2 border-blue-700 pb-2">Comando de Registro</h2>
+                <p class="mt-4 text-gray-300">Este comando es especial y solo puede ser usado por un <strong>Administrador de WhatsApp</strong> en un grupo que aún no ha sido registrado por el bot.</p>
+                
+                <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 mt-4 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-100"><code>!mod register &lt;tipo&gt;</code></h3>
+                    <p class="text-sm text-gray-400 mt-1">Registra el grupo actual en la base de datos del bot.</p>
+                    <div class="mt-2">
+                        <span class="inline-block bg-green-800 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded-full">Permiso: Admin de WA</span>
+                        <p class="text-sm text-gray-400 mt-2">Parámetro <code>&lt;tipo&gt;</code> (obligatorio):</p>
+                        <ul class="list-disc list-inside text-sm text-gray-400 ml-4 mt-1">
+                            <li><code>standard</code>: Grupo normal que será moderado.</li>
+                            <li><code>console</code>: Grupo de administración (no se modera).</li>
+                            <li><code>sensitive</code>: Grupo sensible (ignorado por <code>--groups=all</code>).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comandos de Admin -->
+            <section class="mt-10">
+                <h2 class="text-2xl font-semibold text-gray-100 border-b-2 border-blue-700 pb-2">Comandos de <code>admin</code></h2>
+                <p class="mt-4 text-gray-300">Disponibles para roles <code>admin</code> y <code>superadmin</code>. Los <code>admin</code> solo pueden afectar al grupo actual.</p>
+                <div class="space-y-4 mt-4">
+
+                    <!-- Comando !mod help -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod help</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Muestra el menú de ayuda, adaptado a tu nivel de permiso.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                    </div>
+
+                    <!-- Comando !mod status -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod status</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Muestra la configuración de moderación (límites de strikes, flood) para el grupo actual.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001,all</code> para ver el estado de otros grupos.</p>
+                    </div>
+
+                    <!-- Comando !mod whois -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod whois @usuario</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Muestra el perfil de moderación de un usuario: strikes, estado de mute y rol de bot.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001</code> para consultar en un grupo específico.</p>
+                    </div>
+
+                    <!-- Comando !mod kick -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod kick @usuario</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Expulsa a un usuario del grupo.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001,002</code> (no soporta <code>all</code>).</p>
+                    </div>
+
+                    <!-- Comando !mod mutes -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod mutes</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Muestra todos los usuarios actualmente silenciados en el grupo y el tiempo restante.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001</code>.</p>
+                    </div>
+
+                    <!-- Comando !mod strikes -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod strikes [@usuario]</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Si se menciona a un usuario, muestra sus strikes. Si no, muestra un ranking de strikes en el grupo.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001</code>.</p>
+                    </div>
+
+                    <!-- Comando !mod reset -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod reset @usuario</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Limpia todos los strikes de un usuario en el grupo.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001,002</code> (no soporta <code>all</code>).</p>
+                    </div>
+
+                    <!-- Comando !mod mute -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod mute @usuario &lt;duración&gt;</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Silencia a un usuario, impidiéndole enviar mensajes. La duración se especifica con <code>s</code> (seg), <code>m</code> (min), <code>h</code> (horas), <code>d</code> (días).</p>
+                        <p class="text-sm text-gray-400 mt-1">Ej: <code>!mod mute @usuario 10m</code>, <code>!mod mute @usuario 2h</code></p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001,all</code>.</p>
+                    </div>
+
+                    <!-- Comando !mod unmute -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod unmute @usuario</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Quita el silencio a un usuario inmediatamente.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001,all</code>.</p>
+                    </div>
+
+                    <!-- Comando !mod announce -->
+                    <div class="bg-gray-700 border border-gray-600 rounded-lg p-4 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-100"><code>!mod announce &lt;mensaje&gt;</code></h3>
+                        <p class="text-sm text-gray-400 mt-1">Envía un anuncio con el prefijo 📢 al grupo actual.</p>
+                        <span class="inline-block bg-blue-800 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2">Rol: admin</span>
+                        <p class="text-sm text-gray-400 mt-2"><strong>Super Admin:</strong> Puede usar <code>--groups=001,all</code> para enviar a múltiples grupos.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Comandos de Super Admin -->
+            <section class="mt-10">
+                <h2 class="text-2xl font-semibold text-gray-100 border-b-2 border-indigo-700 pb-2">Comandos de <code>superadmin</code></h2>
+                <p class="mt-4 text-gray-300">Comandos sensibles que solo el rol <code>superadmin</code> puede ejecutar.</p>
+                <div class="space-y-4 mt-4">
+
+                    <!-- Gestión de Permisos -->
+                    <div class="bg-gray-700/50 border border-indigo-700 rounded-lg p-4 shadow-sm">
+                        <h4 class="text-lg font-semibold text-indigo-300">Gestión de Permisos</h4>
+                        <div class="mt-2 space-y-3">
+                            <p class="text-sm text-gray-300"><code>!mod listauth</code><br>Lista todos los usuarios con roles <code>admin</code> o <code>superadmin</code> en la DB.</p>
+                            <p class="text-sm text-gray-300"><code>!mod setrole @usuario &lt;rol&gt;</code><br>Asigna un rol a un usuario. Roles válidos: <code>admin</code>, <code>superadmin</code>, <code>null</code> (para quitar permisos).</p>
+                        </div>
+                    </div>
+
+                    <!-- Gestión de Grupos -->
+                    <div class="bg-gray-700/50 border border-indigo-700 rounded-lg p-4 shadow-sm">
+                        <h4 class="text-lg font-semibold text-indigo-300">Gestión de Grupos</h4>
+                        <div class="mt-2 space-y-3">
+                            <p class="text-sm text-gray-300"><code>!mod unregister</code><br>Des-registra el grupo actual de la base de datos.</p>
+                            <p class="text-sm text-gray-300"><code>!mod listgroups</code><br>Muestra todos los grupos registrados, sus IDs cortos y sus tipos.</p>
+                            <p class="text-sm text-gray-300"><code>!mod settype &lt;ID&gt; &lt;tipo&gt;</code><br>Cambia el tipo de un grupo usando su ID corto (ej. <code>001</code>).</p>
+                        </div>
+                    </div>
+
+                    <!-- Gestión de Grupos de WA (Remoto) -->
+                    <div class="bg-gray-700/50 border border-indigo-700 rounded-lg p-4 shadow-sm">
+                        <h4 class="text-lg font-semibold text-indigo-300">Gestión de Grupos de WA (Remoto)</h4>
+                        <div class="mt-2 space-y-3">
+                            <p class="text-sm text-gray-300"><code>!mod setsubject --groups=001 "Nuevo Nombre"</code><br>Cambia el nombre del grupo especificado.</p>
+                            <p class="text-sm text-gray-300"><code>!mod setdesc --groups=001 "Nueva Desc"</code><br>Cambia la descripción del grupo especificado.</p>
+                            <p class="text-sm text-gray-300"><code>!mod promote @usuario --groups=001</code><br>Asciende a un usuario a admin de WA en el grupo (no soporta <code>all</code>).</p>
+                            <p class="text-sm text-gray-300"><code>!mod demote @usuario --groups=001</code><br>Degrada a un admin de WA a miembro en el grupo (no soporta <code>all</code>).</p>
+                            <p class="text-sm text-gray-300"><code>!mod setsetting --groups=... &lt;opción&gt; &lt;valor&gt;</code><br>Cambia ajustes de WA. Opciones: <code>messages</code>, <code>edit</code>. Valores: <code>all</code>, <code>admin</code>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Configuración del Bot -->
+                    <div class="bg-gray-700/50 border border-indigo-700 rounded-lg p-4 shadow-sm">
+                        <h4 class="text-lg font-semibold text-indigo-300">Configuración del Bot y DB</h4>
+                        <div class="mt-2 space-y-3">
+                            <p class="text-sm text-gray-300"><code>!mod config list</code><br>Muestra las variables de configuración (ej. <code>SPAM_STRIKE_LIMIT</code>) que se pueden cambiar.</p>
+                            <p class="text-sm text-gray-300"><code>!mod config &lt;key&gt; &lt;value&gt;</code><br>Cambia una variable de configuración. Ej: <code>!mod config SPAM_STRIKE_LIMIT 5</code>.</p>
+                            <p class="text-sm text-gray-300"><code>!mod list &lt;tipo&gt;</code><br>Lista dominios o frases. Tipos: <code>allowed</code>, <code>blocked</code>, <code>phrases</code>.</p>
+                            <p class="text-sm text-gray-300"><code>!mod allow dominio.com</code><br>Añade un dominio a la whitelist (lista blanca).</p>
+                            <p class="text-sm text-gray-300"><code>!mod deny dominio.com</code><br>Añade un dominio a la blocklist (lista negra).</p>
+                            <p class="text-sm text-gray-300"><code>!mod allowphrase "frase de ejemplo"</code><br>Añade una frase a la whitelist (debe ir entre comillas).</p>
+                            <p class="text-sm text-gray-300"><code>!mod denyphrase "frase de ejemplo"</code><br>Quita una frase de la whitelist.</p>
+                            <p class="text-sm text-gray-300"><code>!mod db status</code><br>Muestra estadísticas de la base de datos (conteos de tablas).</p>
+                            <p class="text-sm text-gray-300"><code>!mod prune &lt;tipo&gt; &lt;edad&gt;</code><br>Purga registros antiguos de la DB. Tipos: <code>strikes</code>, <code>offenses</code>, <code>rate_events</code>. Edad: <code>7d</code>, <code>24h</code>.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
