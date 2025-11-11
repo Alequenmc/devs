@@ -3,394 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual de Comandos - Copiloto</title>
+    <title>Documentación Exhaustiva - Copiloto v3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        },
-                        dark: {
-                            800: '#1e293b',
-                            900: '#0f172a',
-                        }
+                        brand: { 500: '#3b82f6', 600: '#2563eb', 900: '#1e3a8a' },
+                        dark: { 800: '#1e293b', 900: '#0f172a' }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        code { font-family: 'Fira Code', monospace; }
-        /* Custom scrollbar for sidebar */
-        aside::-webkit-scrollbar { width: 6px; }
-        aside::-webkit-scrollbar-track { background: #0f172a; }
-        aside::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        aside::-webkit-scrollbar-thumb:hover { background: #475569; }
-        
-        /* Utility to hide scrollbar in specific elements but keep functionality */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        code { font-family: 'JetBrains Mono', monospace; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-slate-100 text-slate-800">
 
-    <div class="flex flex-col md:flex-row min-h-screen">
+    <div class="flex flex-col lg:flex-row min-h-screen">
 
-        <!-- Mobile Header & Nav Toggle -->
-        <div class="md:hidden bg-dark-900 text-white p-4 sticky top-0 z-30 shadow-md flex justify-between items-center w-full">
+        <!-- Mobile Header -->
+        <header class="lg:hidden bg-dark-900 text-white p-4 sticky top-0 z-50 shadow-lg flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <h1 class="font-bold text-xl">Copiloto</h1>
-                <span class="text-xs bg-brand-600 px-2 py-1 rounded font-mono">v3</span>
+                <span class="bg-brand-600 text-xs font-bold px-2 py-1 rounded">v3.0</span>
+                <h1 class="font-bold text-lg tracking-tight">Copiloto Docs</h1>
             </div>
-            <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+            <button id="menu-toggle" class="text-slate-300 hover:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
-        </div>
+        </header>
 
-        <!-- Mobile Navigation Overlay (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-dark-900 z-20 pt-20 px-6 pb-6 overflow-y-auto">
-             <nav class="space-y-2 text-lg">
-                <a href="#intro" class="block py-3 border-b border-slate-700 text-slate-300 hover:text-brand-400 mobile-link">Introducción</a>
-                <a href="#conceptos" class="block py-3 border-b border-slate-700 text-slate-300 hover:text-brand-400 mobile-link">Conceptos Clave</a>
-                <div class="pt-4 pb-2 text-xs font-semibold uppercase tracking-wider text-brand-500">Comandos</div>
-                <a href="#registro" class="block py-2 pl-4 text-slate-300 hover:text-white mobile-link border-l-2 border-transparent hover:border-brand-500">Registro</a>
-                <a href="#consola" class="block py-2 pl-4 text-slate-300 hover:text-white mobile-link border-l-2 border-transparent hover:border-brand-500">Consola Global</a>
-                <a href="#gestion" class="block py-2 pl-4 text-slate-300 hover:text-white mobile-link border-l-2 border-transparent hover:border-brand-500">Gestión Multi-Grupo</a>
-                <a href="#moderacion" class="block py-2 pl-4 text-slate-300 hover:text-white mobile-link border-l-2 border-transparent hover:border-brand-500">Moderación</a>
-                <a href="#utilidad" class="block py-2 pl-4 text-slate-300 hover:text-white mobile-link border-l-2 border-transparent hover:border-brand-500">Utilidad</a>
-            </nav>
-            <button id="close-menu-btn" class="absolute top-4 right-4 text-slate-400">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
+        <!-- Sidebar (Desktop & Mobile Overlay) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-dark-900 text-slate-400 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out z-40 overflow-y-auto border-r border-slate-800 lg:sticky lg:top-0 lg:h-screen">
+            <div class="p-6 border-b border-slate-800 bg-dark-900 sticky top-0 z-10">
+                <h1 class="text-2xl font-bold text-white tracking-tight">Copiloto <span class="text-brand-500">JS</span></h1>
+                <p class="text-xs mt-1">Manual de Referencia Exhaustivo</p>
+            </div>
+            
+            <nav class="p-4 space-y-8 text-sm">
+                <div>
+                    <h3 class="px-3 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Core</h3>
+                    <a href="#targeting" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Sistema de Targeting</a>
+                    <a href="#registro" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Registro de Grupos</a>
+                </div>
 
-        <!-- Sidebar Navigation (Desktop) -->
-        <aside class="hidden md:flex flex-col w-64 bg-dark-900 text-slate-300 fixed h-full overflow-y-auto border-r border-slate-700 z-10">
-            <div class="p-6 border-b border-slate-800">
-                <h1 class="text-2xl font-bold text-white tracking-tight">Copiloto <span class="text-brand-500 text-sm align-top font-mono">v3</span></h1>
-                <p class="text-xs text-slate-500 mt-1">Sistema de Moderación</p>
-            </div>
-            <nav class="flex-1 p-4 space-y-1 text-sm">
-                <a href="#intro" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Introducción</a>
-                <a href="#conceptos" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Conceptos Clave</a>
-                <div class="pt-4 pb-2 px-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Comandos</div>
-                <a href="#registro" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Registro de Grupos</a>
-                <a href="#consola" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Administración Global</a>
-                <a href="#gestion" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Gestión Multi-Grupo</a>
-                <a href="#moderacion" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Moderación</a>
-                <a href="#utilidad" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-white transition">Utilidad</a>
+                <div>
+                    <h3 class="px-3 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Consola (Admin Global)</h3>
+                    <a href="#consola-grupos" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Gestión de Grupos</a>
+                    <a href="#config-keys" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Claves-Valores (!mod config)</a>
+                    <a href="#consola-db" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Base de Datos</a>
+                    <a href="#consola-listas" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Whitelists / Blacklists</a>
+                </div>
+
+                <div>
+                    <h3 class="px-3 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Gestión & Moderación</h3>
+                    <a href="#gestion-remota" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Gestión Remota</a>
+                    <a href="#acciones-usuario" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Acciones (Kick/Mute)</a>
+                    <a href="#auditoria" class="block px-3 py-2 rounded hover:bg-slate-800 hover:text-white transition">Auditoría (Whois/Logs)</a>
+                </div>
             </nav>
-            <div class="p-4 text-xs text-center text-slate-600 border-t border-slate-800">
-                Manual generado automáticamente
-            </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 md:ml-64 w-full bg-slate-50">
-            
-            <div class="max-w-4xl mx-auto p-4 md:p-12 space-y-12 md:space-y-16">
+        <main class="flex-1 w-full max-w-full overflow-y-auto bg-slate-50">
+            <div class="max-w-5xl mx-auto px-4 py-8 lg:p-12 space-y-16">
 
-                <!-- Intro Section -->
-                <section id="intro" class="space-y-6 scroll-mt-24 md:scroll-mt-8">
-                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
-                        <h2 class="text-2xl md:text-3xl font-bold text-dark-900 mb-4">Introducción</h2>
-                        <p class="text-base md:text-lg text-slate-600 leading-relaxed">
-                            Copiloto es un bot de moderación avanzado basado en <strong>SQLite</strong> e <strong>Inteligencia Artificial</strong>. Permite gestionar múltiples grupos de WhatsApp desde una única "Consola Central".
-                        </p>
-                        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                <div class="text-brand-600 font-bold mb-1">Multi-Grupo</div>
-                                <div class="text-sm text-slate-600">Gestiona N grupos con un comando.</div>
-                            </div>
-                            <div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                                <div class="text-purple-600 font-bold mb-1">IA Local</div>
-                                <div class="text-sm text-slate-600">Detecta spam e insultos.</div>
-                            </div>
-                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                                <div class="text-emerald-600 font-bold mb-1">Persistencia</div>
-                                <div class="text-sm text-slate-600">Base de datos SQLite robusta.</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Concepts Section -->
-                <section id="conceptos" class="space-y-6 scroll-mt-24 md:scroll-mt-8">
-                    <h2 class="text-xl md:text-2xl font-bold text-dark-900 border-l-4 border-brand-500 pl-4">Conceptos Clave</h2>
-                    
-                    <div class="space-y-4">
-                        <!-- Group Types -->
-                        <div class="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-slate-200">
-                            <h3 class="text-lg font-bold text-dark-900 mb-3">Tipos de Grupo</h3>
-                            <ul class="space-y-4">
-                                <li class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3">
-                                    <span class="self-start bg-slate-200 text-slate-700 text-xs font-bold px-2 py-1 rounded uppercase">Standard</span>
-                                    <span class="text-sm text-slate-600">Grupos normales. El bot modera, banea spam y responde comandos locales.</span>
-                                </li>
-                                <li class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3">
-                                    <span class="self-start bg-brand-100 text-brand-700 text-xs font-bold px-2 py-1 rounded uppercase">Console</span>
-                                    <span class="text-sm text-slate-600">Panel de control. El bot <strong>NO</strong> modera mensajes aquí.</span>
-                                </li>
-                                <li class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3">
-                                    <span class="self-start bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded uppercase">Sensitive</span>
-                                    <span class="text-sm text-slate-600">Grupos delicados. Inmunes a comandos globales como <code>--groups=all</code>.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Targeting System -->
-                        <div class="bg-dark-900 p-5 md:p-6 rounded-xl shadow-lg text-slate-300">
-                            <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                                <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                                Sistema de Targeting
-                            </h3>
-                            <p class="mb-4 text-sm">Usa el flag <code>--groups</code> para indicar dónde ejecutar la acción.</p>
-                            
-                            <div class="grid gap-3">
-                                <!-- Code example 1 -->
-                                <div class="bg-slate-800 p-3 rounded border border-slate-700 font-mono text-xs md:text-sm overflow-x-auto">
-                                    <div class="whitespace-nowrap">
-                                        <span class="text-brand-400">!mod comando</span> ... <span class="text-yellow-400">--groups=001</span>
-                                    </div>
-                                </div>
-                                <div class="text-xs text-slate-400 mb-2">Ejecuta solo en el grupo 001.</div>
-
-                                <!-- Code example 2 -->
-                                <div class="bg-slate-800 p-3 rounded border border-slate-700 font-mono text-xs md:text-sm overflow-x-auto">
-                                    <div class="whitespace-nowrap">
-                                        <span class="text-brand-400">!mod comando</span> ... <span class="text-yellow-400">--groups=all</span>
-                                    </div>
-                                </div>
-                                <div class="text-xs text-slate-400">Ejecuta en TODOS los grupos (menos Sensitive).</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Commands: Registro -->
-                <section id="registro" class="space-y-6 pt-8 scroll-mt-24 md:scroll-mt-8">
-                    <h2 class="text-xl md:text-2xl font-bold text-dark-900 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm shrink-0">R</span>
-                        Registro e Inicialización
-                    </h2>
-
-                    <div class="space-y-4">
-                        <!-- Command Item -->
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
-                            <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                                <code class="text-brand-700 font-bold text-sm break-all">!mod register &lt;type&gt;</code>
-                                <span class="self-start sm:self-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded border border-green-200">Local</span>
-                            </div>
-                            <div class="p-4 text-sm text-slate-700">
-                                Registra el grupo actual.
-                                <div class="mt-3 font-mono text-slate-500 text-xs bg-slate-100 p-3 rounded overflow-x-auto">
-                                    !mod register standard<br>
-                                    !mod register console
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Command Item -->
-                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
-                            <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                                <code class="text-brand-700 font-bold text-sm break-all">!mod unregister</code>
-                                <span class="self-start sm:self-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded border border-green-200">Local</span>
-                            </div>
-                            <div class="p-4 text-sm text-slate-700">
-                                Elimina el grupo de la DB. Deja de moderar aquí.
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Commands: Consola -->
-                <section id="consola" class="space-y-6 pt-8 scroll-mt-24 md:scroll-mt-8">
-                    <h2 class="text-xl md:text-2xl font-bold text-dark-900 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center text-white text-sm shrink-0">C</span>
-                        Consola Global
-                    </h2>
-                    <p class="text-slate-600 text-sm md:text-base">Comandos exclusivos de grupos tipo <code>console</code>.</p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-                            <code class="text-brand-700 font-bold block mb-2 text-sm">!mod listgroups</code>
-                            <p class="text-sm text-slate-600">Lista todos los grupos, sus IDs cortos (001, 002) y tipos.</p>
-                        </div>
-
-                        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-                            <code class="text-brand-700 font-bold block mb-2 text-sm break-words">!mod settype &lt;ID&gt; &lt;type&gt;</code>
-                            <p class="text-sm text-slate-600">Cambia tipo de grupo.<br><span class="text-xs bg-slate-100 p-1 rounded">Ej: !mod settype 002 sensitive</span></p>
-                        </div>
-
-                        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-                            <code class="text-brand-700 font-bold block mb-2 text-sm break-words">!mod config &lt;key&gt; &lt;val&gt;</code>
-                            <p class="text-sm text-slate-600">Ajustes globales.<br><span class="text-xs bg-slate-100 p-1 rounded">Ej: !mod config list</span></p>
-                        </div>
-
-                        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-                            <code class="text-brand-700 font-bold block mb-2 text-sm break-words">!mod prune &lt;type&gt; &lt;age&gt;</code>
-                            <p class="text-sm text-slate-600">Limpieza DB.<br><span class="text-xs bg-slate-100 p-1 rounded">Ej: !mod prune strikes 30d</span></p>
-                        </div>
+                <!-- Section: Targeting -->
+                <section id="targeting" class="scroll-mt-24">
+                    <div class="mb-6">
+                        <h2 class="text-3xl font-bold text-dark-900">Sistema de Targeting</h2>
+                        <p class="text-slate-600 mt-2">Cómo ejecutar comandos en múltiples grupos simultáneamente.</p>
                     </div>
                     
-                    <div class="bg-slate-50 rounded-xl p-5 border border-slate-200 mt-4">
-                        <h3 class="font-bold text-slate-700 mb-3 text-sm uppercase tracking-wide">Listas Blancas y Negras</h3>
-                        <ul class="space-y-3 text-xs md:text-sm font-mono text-slate-600 break-all">
-                            <li><span class="text-brand-600 font-bold">!mod allow</span> google.com</li>
-                            <li><span class="text-brand-600 font-bold">!mod deny</span> sitio-malo.com</li>
-                            <li><span class="text-brand-600 font-bold">!mod allowphrase</span> "texto seguro"</li>
-                            <li><span class="text-brand-600 font-bold">!mod list</span> &lt;allowed|blocked&gt;</li>
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow">
+                        <div class="p-6 grid gap-6">
+                            <div class="grid md:grid-cols-[120px_1fr] gap-4 items-start">
+                                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200 font-mono">Local</span>
+                                <div>
+                                    <p class="font-semibold text-sm text-dark-900">Sin argumentos</p>
+                                    <p class="text-sm text-slate-600">Si no se usa <code>--groups</code>, el comando se ejecuta en el chat actual.</p>
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-[120px_1fr] gap-4 items-start">
+                                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 font-mono">Específico</span>
+                                <div>
+                                    <code class="text-sm font-bold bg-slate-100 px-1 py-0.5 rounded">--groups=001,002</code>
+                                    <p class="text-sm text-slate-600 mt-1">Ejecuta el comando solo en los grupos con ID corto 001 y 002.</p>
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-[120px_1fr] gap-4 items-start">
+                                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100 font-mono">Global</span>
+                                <div>
+                                    <code class="text-sm font-bold bg-slate-100 px-1 py-0.5 rounded">--groups=all</code>
+                                    <p class="text-sm text-slate-600 mt-1">Ejecuta en <strong>todos</strong> los grupos Standard y Console. <span class="text-red-600 font-medium">Excluye grupos 'sensitive'.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Registro -->
+                <section id="registro" class="pt-8 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-mono">01</span>
+                        Registro de Grupos
+                    </h2>
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <!-- Register -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow relative group">
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span class="text-xs font-mono text-slate-400">local</span>
+                            </div>
+                            <h3 class="font-mono text-brand-600 font-bold text-lg mb-2">!mod register &lt;type&gt;</h3>
+                            <p class="text-sm text-slate-600 mb-4">Inicializa el bot en el grupo actual.</p>
+                            <div class="bg-slate-50 rounded p-3 text-xs font-mono text-slate-700 space-y-1">
+                                <p>!mod register standard</p>
+                                <p>!mod register console</p>
+                                <p>!mod register sensitive</p>
+                            </div>
+                        </div>
+                        <!-- Unregister -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow">
+                            <h3 class="font-mono text-brand-600 font-bold text-lg mb-2">!mod unregister</h3>
+                            <p class="text-sm text-slate-600">Elimina el grupo actual de la base de datos. Detiene la moderación.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Consola Grupos -->
+                <section id="consola-grupos" class="pt-8 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center text-sm font-mono">02</span>
+                        Consola: Gestión de Grupos
+                    </h2>
+                    <div class="bg-white rounded-xl border border-slate-200 shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left">
+                                <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
+                                    <tr>
+                                        <th class="px-6 py-3 font-medium">Comando</th>
+                                        <th class="px-6 py-3 font-medium">Descripción</th>
+                                        <th class="px-6 py-3 font-medium">Ejemplo</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-slate-700">listgroups</td>
+                                        <td class="px-6 py-4 text-slate-600">Muestra tabla de grupos registrados, sus IDs cortos y tipos.</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">!mod listgroups</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-slate-700">settype</td>
+                                        <td class="px-6 py-4 text-slate-600">Cambia el tipo de grupo remotamente.</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">!mod settype 002 console</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Config Keys -->
+                <section id="config-keys" class="pt-8 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center text-sm font-mono">03</span>
+                        Consola: Claves-Valores (!mod config)
+                    </h2>
+                    <p class="text-sm text-slate-600 mb-4">Estas son las claves que puedes modificar con <code>!mod config &lt;clave&gt; &lt;valor&gt;</code>. (Ej: <code>!mod config SPAM_STRIKE_LIMIT 5</code>)</p>
+                    
+                    <div class="bg-white rounded-xl border border-slate-200 shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left min-w-[700px]">
+                                <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
+                                    <tr>
+                                        <th class="px-6 py-3 font-medium">Clave (Key)</th>
+                                        <th class="px-6 py-3 font-medium">Descripción</th>
+                                        <th class="px-6 py-3 font-medium">Valor Típico</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-brand-700">SPAM_STRIKE_LIMIT</td>
+                                        <td class="px-6 py-4 text-slate-600">Nº de strikes (spam, flood) para ban automático.</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-brand-700">SPAM_STRIKE_TIMEFRAME_MS</td>
+                                        <td class="px-6 py-4 text-slate-600">Ventana de tiempo (en milisegundos) para el ban.</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">60000 (1 min)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-brand-700">USER_RATE_WINDOW_MS</td>
+                                        <td class="px-6 py-4 text-slate-600">Ventana de tiempo para detectar flood.</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">12000 (12 seg)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-brand-700">USER_RATE_MAX_MSGS</td>
+                                        <td class="px-6 py-4 text-slate-600">Nº de mensajes en esa ventana para ser flood.</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">6</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-brand-700">MIN_MESSAGE_LENGTH_FOR_AI</td>
+                                        <td class="px-6 py-4 text-slate-600">Longitud mínima para enviar a la IA (ahorra recursos).</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">14</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 font-mono font-bold text-brand-700">USE_AI_FOR_MEDIA</td>
+                                        <td class="px-6 py-4 text-slate-600">Analizar con IA mensajes que solo tienen media (foto/video) y texto corto.</td>
+                                        <td class="px-6 py-4 font-mono text-xs text-slate-500">false</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                         <div class="p-4 bg-slate-50 border-t border-slate-200">
+                            <code class="text-brand-600 font-bold text-sm">!mod config list</code>
+                            <p class="text-xs text-slate-500 mt-1">Usa este comando para ver la lista y sus valores actuales.</p>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Section: Consola DB -->
+                <section id="consola-db" class="pt-8 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center text-sm font-mono">04</span>
+                        Consola: Base de Datos
+                    </h2>
+                    
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-slate-700 text-sm uppercase mb-3">Mantenimiento</h3>
+                        <ul class="space-y-3">
+                            <li class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                <code class="bg-white px-2 py-1 rounded border border-slate-200 font-bold text-xs sm:text-sm">!mod db status</code>
+                                <span class="text-sm text-slate-600">Muestra conteo de filas (strikes, grupos, mutes, etc).</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:items-center gap-2">
+                                <code class="bg-white px-2 py-1 rounded border border-slate-200 font-bold text-xs sm:text-sm">!mod prune &lt;type&gt; &lt;age&gt;</code>
+                                <span class="text-sm text-slate-600">Borra datos antiguos.</span>
+                            </li>
                         </ul>
+                        <div class="mt-3 pl-2 border-l-2 border-slate-300 text-xs text-slate-500 font-mono">
+                            <p class="font-sans font-bold text-slate-400 text-[10px] uppercase">Argumentos para PRUNE:</p>
+                            Tipos: strikes, offenses, rate_events<br>
+                            Edad: 30d, 24h, 60m (días, horas, minutos)<br>
+                            Ej: !mod prune strikes 30d
+                        </div>
                     </div>
                 </section>
 
-                <!-- Commands: Gestión (Responsive Table/Cards) -->
-                <section id="gestion" class="space-y-6 pt-8 scroll-mt-24 md:scroll-mt-8">
-                    <h2 class="text-xl md:text-2xl font-bold text-dark-900 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center text-white text-sm shrink-0">G</span>
-                        Gestión Multi-Grupo
+                <!-- Section: Listas -->
+                <section id="consola-listas" class="pt-8 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center text-sm font-mono">05</span>
+                        Consola: Whitelists & Blacklists
                     </h2>
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow">
+                        <div class="p-6 space-y-6">
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 uppercase mb-2">Dominios</h4>
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div class="font-mono text-sm text-slate-600 bg-slate-50 p-2 rounded border border-slate-100">!mod allow google.com</div>
+                                    <div class="font-mono text-sm text-slate-600 bg-slate-50 p-2 rounded border border-slate-100">!mod deny sitio-spam.com</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 uppercase mb-2">Frases (IA Bypass)</h4>
+                                <p class="text-xs text-amber-600 mb-2 font-medium">⚠️ REQUIERE COMILLAS DOBLES</p>
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div class="font-mono text-sm text-slate-600 bg-slate-50 p-2 rounded border border-slate-100">!mod allowphrase "texto seguro"</div>
+                                    <div class="font-mono text-sm text-slate-600 bg-slate-50 p-2 rounded border border-slate-100">!mod denyphrase "frase prohibida"</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 uppercase mb-2">Consulta</h4>
+                                <div class="font-mono text-sm text-slate-600 bg-slate-50 p-2 rounded border border-slate-100">!mod list &lt;allowed|blocked|phrases&gt;</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                    <!-- Desktop Table (Hidden on Mobile) -->
-                    <div class="hidden md:block overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
-                        <table class="w-full text-sm text-left text-slate-600">
-                            <thead class="text-xs text-slate-700 uppercase bg-slate-100">
+                <!-- Section: Gestion Remota -->
+                <section id="gestion-remota" class="pt-8 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-purple-600 text-white flex items-center justify-center text-sm font-mono">06</span>
+                        Gestión Remota de Grupos
+                    </h2>
+                    <p class="text-sm text-slate-600 mb-4">Comandos para administrar metadatos y permisos de grupos a distancia. Todos usan <code>--groups</code>.</p>
+
+                    <div class="overflow-x-auto border border-slate-200 rounded-lg shadow bg-white">
+                        <table class="w-full text-sm text-left text-slate-600 min-w-[700px]">
+                            <thead class="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
                                 <tr>
-                                    <th class="px-6 py-3">Comando</th>
-                                    <th class="px-6 py-3">Descripción</th>
-                                    <th class="px-6 py-3">Ejemplo</th>
+                                    <th class="px-4 py-3 w-32">Comando</th>
+                                    <th class="px-4 py-3 w-24">Soporta 'All'</th>
+                                    <th class="px-4 py-3">Uso / Argumentos</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-200 bg-white">
+                            <tbody class="divide-y divide-slate-200">
                                 <tr>
-                                    <td class="px-6 py-4 font-mono font-bold text-brand-700">setsubject</td>
-                                    <td class="px-6 py-4">Cambia nombre del grupo.</td>
-                                    <td class="px-6 py-4 font-mono text-xs">!mod setsubject --groups=001 "Devs"</td>
+                                    <td class="px-4 py-3 font-mono font-bold text-purple-700">setsubject</td>
+                                    <td class="px-4 py-3"><span class="text-green-600 font-bold text-xs">SÍ</span></td>
+                                    <td class="px-4 py-3">
+                                        <code>--groups=... "Nuevo Título"</code>
+                                        <div class="text-xs text-slate-400 mt-1">Las comillas son recomendadas.</div>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 font-mono font-bold text-brand-700">setdesc</td>
-                                    <td class="px-6 py-4">Cambia la descripción.</td>
-                                    <td class="px-6 py-4 font-mono text-xs">!mod setdesc --groups=all "Reglas..."</td>
+                                    <td class="px-4 py-3 font-mono font-bold text-purple-700">setdesc</td>
+                                    <td class="px-4 py-3"><span class="text-green-600 font-bold text-xs">SÍ</span></td>
+                                    <td class="px-4 py-3">
+                                        <code>--groups=... "Nueva Descripción"</code>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 font-mono font-bold text-brand-700">promote / demote</td>
-                                    <td class="px-6 py-4">Da/Quita admin. <span class="text-red-500 text-xs font-bold block">No usa 'all'</span></td>
-                                    <td class="px-6 py-4 font-mono text-xs">!mod promote @Juan --groups=002</td>
+                                    <td class="px-4 py-3 font-mono font-bold text-purple-700">setsetting</td>
+                                    <td class="px-4 py-3"><span class="text-green-600 font-bold text-xs">SÍ</span></td>
+                                    <td class="px-4 py-3">
+                                        <code>--groups=... &lt;messages|edit&gt; &lt;all|admin&gt;</code>
+                                        <div class="text-xs text-slate-400 mt-1">Cierra chat (messages admin) o info (edit admin).</div>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 font-mono font-bold text-brand-700">setsetting</td>
-                                    <td class="px-6 py-4">Cierra/Abre chat.</td>
-                                    <td class="px-6 py-4 font-mono text-xs whitespace-nowrap">!mod setsetting --groups=all messages admin</td>
+                                    <td class="px-4 py-3 font-mono font-bold text-purple-700">announce</td>
+                                    <td class="px-4 py-3"><span class="text-green-600 font-bold text-xs">SÍ</span></td>
+                                    <td class="px-4 py-3">
+                                        <code>--groups=... &lt;mensaje&gt;</code>
+                                        <div class="text-xs text-red-500 font-bold mt-1">REQUIERE --groups obligatoriamente.</div>
+                                    </td>
+                                </tr>
+                                <tr class="bg-red-50/50">
+                                    <td class="px-4 py-3 font-mono font-bold text-purple-700">promote</td>
+                                    <td class="px-4 py-3"><span class="text-red-600 font-bold text-xs">NO</span></td>
+                                    <td class="px-4 py-3">
+                                        <code>@user --groups=001,002</code>
+                                        <div class="text-xs text-slate-500 mt-1">Convierte al usuario en Admin.</div>
+                                    </td>
+                                </tr>
+                                <tr class="bg-red-50/50">
+                                    <td class="px-4 py-3 font-mono font-bold text-purple-700">demote</td>
+                                    <td class="px-4 py-3"><span class="text-red-600 font-bold text-xs">NO</span></td>
+                                    <td class="px-4 py-3">
+                                        <code>@user --groups=001,002</code>
+                                        <div class="text-xs text-slate-500 mt-1">Quita permisos de Admin.</div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Mobile Cards (Visible on Mobile only) -->
-                    <div class="md:hidden space-y-4">
-                        <!-- Card 1 -->
-                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                            <div class="font-mono font-bold text-brand-700 mb-1">setsubject</div>
-                            <p class="text-sm text-slate-600 mb-2">Cambia nombre del grupo.</p>
-                            <div class="bg-slate-100 p-2 rounded text-xs font-mono text-slate-500 break-all">
-                                !mod setsubject --groups=001 "Nombre"
-                            </div>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                            <div class="font-mono font-bold text-brand-700 mb-1">setdesc</div>
-                            <p class="text-sm text-slate-600 mb-2">Cambia la descripción.</p>
-                            <div class="bg-slate-100 p-2 rounded text-xs font-mono text-slate-500 break-all">
-                                !mod setdesc --groups=all "Reglas..."
-                            </div>
-                        </div>
-                         <!-- Card 3 -->
-                         <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                            <div class="font-mono font-bold text-brand-700 mb-1">promote / demote</div>
-                            <p class="text-sm text-slate-600 mb-2">Gestión de admins. <span class="text-red-500 text-xs font-bold">No usa 'all'</span></p>
-                            <div class="bg-slate-100 p-2 rounded text-xs font-mono text-slate-500 break-all">
-                                !mod promote @Juan --groups=002
-                            </div>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
-                            <div class="font-mono font-bold text-brand-700 mb-1">setsetting</div>
-                            <p class="text-sm text-slate-600 mb-2">Cierra/Abre chat.</p>
-                            <div class="bg-slate-100 p-2 rounded text-xs font-mono text-slate-500 overflow-x-auto">
-                                <div class="whitespace-nowrap">!mod setsetting --groups=all messages admin</div>
-                            </div>
-                        </div>
-                    </div>
-
                 </section>
 
-                <!-- Commands: Moderación -->
-                <section id="moderacion" class="space-y-6 pt-8 scroll-mt-24 md:scroll-mt-8">
-                    <h2 class="text-xl md:text-2xl font-bold text-dark-900 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white text-sm shrink-0">M</span>
-                        Moderación Activa
+                <!-- Section: Acciones Usuario -->
+                <section id="acciones-usuario" class="pt-8 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-red-600 text-white flex items-center justify-center text-sm font-mono">07</span>
+                        Acciones de Moderación
                     </h2>
-                    <p class="text-slate-600 text-sm">Funciona localmente o con <code>--groups</code>.</p>
+                    <p class="text-sm text-slate-600 mb-4">Acciones directas contra usuarios. Se pueden ejecutar localmente o con <code>--groups</code>.</p>
 
                     <div class="grid gap-4">
                         <!-- Kick -->
-                        <div class="bg-white p-5 rounded-lg border-l-4 border-red-500 shadow-sm">
-                            <div class="flex flex-wrap justify-between items-center gap-2">
-                                <code class="text-base font-bold text-slate-800">!mod kick @user</code>
-                                <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-1 rounded uppercase tracking-wide">No soporta 'all'</span>
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-red-500 shadow">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <code class="text-lg font-bold text-slate-800">!mod kick @user</code>
+                                    <p class="text-sm text-slate-600 mt-1">Expulsa al usuario del grupo.</p>
+                                </div>
+                                <span class="px-2 py-1 rounded bg-red-100 text-red-700 text-[10px] font-bold uppercase">No soporta 'All'</span>
                             </div>
-                            <p class="text-slate-600 mt-2 text-sm">Expulsa a un usuario.</p>
-                            <div class="mt-3 bg-slate-100 p-2 rounded font-mono text-xs text-slate-600 overflow-x-auto">
-                                <div class="whitespace-nowrap">!mod kick @Spammer --groups=001,003</div>
+                            <div class="mt-2 text-xs font-mono text-slate-400">Admite mención, ID (52..@c.us) o búsqueda.</div>
+                        </div>
+
+                        <!-- Reset -->
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <code class="text-lg font-bold text-slate-800">!mod reset @user</code>
+                                    <p class="text-sm text-slate-600 mt-1">Reinicia los strikes del usuario a 0.</p>
+                                </div>
+                                <span class="px-2 py-1 rounded bg-red-100 text-red-700 text-[10px] font-bold uppercase">No soporta 'All'</span>
                             </div>
                         </div>
 
-                        <!-- Mute/Unmute -->
-                        <div class="bg-white p-5 rounded-lg border-l-4 border-yellow-500 shadow-sm">
-                            <code class="text-base font-bold text-slate-800">!mod mute @user &lt;tiempo&gt;</code>
-                            <p class="text-slate-600 mt-2 text-sm">Silencia al usuario. (Flood instantáneo si habla).</p>
-                            <div class="mt-3 bg-slate-100 p-2 rounded font-mono text-xs text-slate-600 overflow-x-auto">
-                                <div class="whitespace-nowrap">!mod mute @Usuario 10m --groups=all</div>
+                        <!-- Mute -->
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-400 shadow">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <code class="text-lg font-bold text-slate-800">!mod mute @user &lt;tiempo&gt;</code>
+                                    <p class="text-sm text-slate-600 mt-1">Silencia. Si habla, recibe strike FLOOD y se borra el mensaje.</p>
+                                    <div class="mt-2 bg-slate-50 p-1 rounded font-mono text-xs inline-block">!mod mute @Juan 30m --groups=all</div>
+                                </div>
+                                <span class="px-2 py-1 rounded bg-green-100 text-green-700 text-[10px] font-bold uppercase">Soporta 'All'</span>
                             </div>
                         </div>
 
-                        <!-- Whois -->
-                        <div class="bg-white p-5 rounded-lg border-l-4 border-blue-500 shadow-sm">
-                            <code class="text-base font-bold text-slate-800">!mod whois @user</code>
-                            <p class="text-slate-600 mt-2 text-sm">Historial de usuario. (Solo 1 grupo a la vez).</p>
+                        <!-- Unmute -->
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-green-500 shadow">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <code class="text-lg font-bold text-slate-800">!mod unmute @user</code>
+                                    <p class="text-sm text-slate-600 mt-1">Levanta el silencio manualmente antes de tiempo.</p>
+                                </div>
+                                <span class="px-2 py-1 rounded bg-green-100 text-green-700 text-[10px] font-bold uppercase">Soporta 'All'</span>
+                            </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Commands: Utilidad -->
-                <section id="utilidad" class="space-y-6 pt-8 pb-12 scroll-mt-24 md:scroll-mt-8">
-                    <h2 class="text-xl md:text-2xl font-bold text-dark-900 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white text-sm shrink-0">U</span>
-                        Utilidad
+                <!-- Section: Auditoria -->
+                <section id="auditoria" class="pt-8 pb-12 scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-dark-900 mb-6 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded bg-emerald-600 text-white flex items-center justify-center text-sm font-mono">08</span>
+                        Auditoría e Información
                     </h2>
+                    <p class="text-sm text-slate-600 mb-4">Comandos informativos. La mayoría solo devuelven datos de 1 grupo a la vez (no usar <code>--groups=all</code>).</p>
 
-                    <div class="bg-white border border-slate-200 rounded-lg p-5 md:p-6 shadow-sm">
-                        <h3 class="text-lg font-bold text-brand-700 mb-2">!mod announce</h3>
-                        <p class="text-slate-600 mb-4 text-sm">Envía un mensaje oficial a los grupos.</p>
-                        
-                        <div class="bg-dark-900 text-slate-300 p-4 rounded-lg font-mono text-xs md:text-sm overflow-x-auto">
-                            <div class="whitespace-pre-wrap break-words"><span class="text-purple-400">!mod announce</span> <span class="text-yellow-400">--groups=all</span> 📢 Mantenimiento del servidor en 10 minutos.</div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow">
+                            <code class="text-brand-700 font-bold">!mod whois @user</code>
+                            <p class="text-sm text-slate-600 mt-2">Perfil completo: ID real, strikes, estado de mute y últimas 5 ofensas.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow">
+                            <code class="text-brand-700 font-bold">!mod status</code>
+                            <p class="text-sm text-slate-600 mt-2">Muestra límites de flood y strikes configurados en el grupo actual.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow">
+                            <code class="text-brand-700 font-bold">!mod mutes</code>
+                            <p class="text-sm text-slate-600 mt-2">Lista todos los usuarios actualmente silenciados en el grupo y tiempo restante.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow">
+                            <code class="text-brand-700 font-bold">!mod help</code>
+                            <p class="text-sm text-slate-600 mt-2">Envía una lista resumida de comandos al chat.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg border border-slate-200 shadow md:col-span-2 border-l-4 border-emerald-400">
+                            <div class="flex justify-between items-center">
+                                <code class="text-brand-700 font-bold">!mod strikes [@user]</code>
+                            </div>
+                            <p class="text-sm text-slate-600 mt-2">Muestra strikes. Si no se menciona usuario, muestra el Top 20 del grupo.</p>
+                            <div class="mt-3 pt-3 border-t border-slate-100">
+                                <span class="text-xs font-bold text-slate-500 uppercase">Flags Avanzados:</span>
+                                <ul class="text-xs font-mono text-slate-600 mt-1 space-y-1">
+                                    <li>--window=2h <span class="text-slate-400">// Strikes en las últimas 2 horas</span></li>
+                                    <li>--all-time <span class="text-slate-400">// Historial completo</span></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -400,31 +470,38 @@
     </div>
     
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const links = sidebar.querySelectorAll('a');
 
-        function toggleMenu() {
-            const isHidden = mobileMenu.classList.contains('hidden');
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // Prevent background scroll
+        // Toggle sidebar on mobile
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isClosed = sidebar.classList.contains('-translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('-translate-x-full');
             } else {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                sidebar.classList.add('-translate-x-full');
             }
-        }
+        });
 
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth < 1024) { // lg breakpoint
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            }
+        });
 
-        // Close menu when clicking a link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
+        // Close sidebar when clicking a link on mobile
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
         });
     </script>
 </body>
 </html>
-
-
