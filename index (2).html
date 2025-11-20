@@ -1,0 +1,1594 @@
+
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Comunidad DEVS - Grupos de WhatsApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Badeen+Display&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Variables CSS mejoradas */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --backdrop-blur: blur(20px);
+        }
+        
+        /* Fuente mejorada */
+        body {
+            background: #0a0a0f;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #e5e7eb;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Fondo animado con gradiente */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(79, 172, 254, 0.06) 0%, transparent 50%);
+            z-index: -2;
+            animation: gradientShift 20s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Grid de fondo sutil */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Efecto Liquid Glass mejorado */
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .liquid-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.03),
+                transparent
+            );
+            transition: left 0.7s ease;
+        }
+        
+        .liquid-glass:hover::before {
+            left: 100%;
+        }
+        
+        /* Logo con efecto holográfico */
+        .logo {
+            font-family: 'Badeen Display', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            text-shadow: 0 0 30px rgba(165, 180, 252, 0.3);
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        /* Tarjetas con efecto liquid glass avanzado */
+        .card-liquid {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.03) 0%,
+                rgba(255, 255, 255, 0.01) 100%
+            );
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Brillo superior en las tarjetas */
+        .card-liquid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(102, 126, 234, 0.6) 25%,
+                rgba(118, 75, 162, 0.6) 50%,
+                rgba(79, 172, 254, 0.6) 75%,
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Efecto de reflejos en hover */
+        .card-liquid::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.03) 0%,
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .card-liquid:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(102, 126, 234, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-liquid:hover::before {
+            opacity: 1;
+        }
+        
+        .card-liquid:hover::after {
+            opacity: 1;
+            transform: translate(25%, 25%);
+        }
+        
+        /* Tabs con liquid glass */
+        .nav-tab {
+            padding: 12px 28px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            background: rgba(255, 255, 255, 0.02);
+            color: #9ca3af;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .nav-tab.active {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            color: #ffffff;
+            border-color: rgba(102, 126, 234, 0.4);
+            box-shadow: 
+                0 4px 20px rgba(102, 126, 234, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab.active::before {
+            opacity: 1;
+        }
+        
+        .nav-tab:not(.active):hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e5e7eb;
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Botones de acción premium */
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 
+                0 4px 15px rgba(102, 126, 234, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 8px 30px rgba(102, 126, 234, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .action-btn:hover::before {
+            left: 100%;
+        }
+        
+        .action-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        
+        /* Header mejorado */
+        header {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 5rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(102, 126, 234, 0.3) 50%,
+                transparent 100%
+            );
+        }
+        
+        /* Iconos sociales mejorados */
+        .header-social-icon {
+            font-size: 1.3rem;
+            color: #9ca3af;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-social-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .header-social-icon:hover {
+            color: #ffffff;
+            transform: translateY(-3px) scale(1.05);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 
+                0 8px 20px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-social-icon:hover::before {
+            opacity: 1;
+        }
+        
+        /* Contenedor de navegación */
+        #nav-tabs-wrapper {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        #nav-tabs-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #nav-tabs-wrapper {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Input de búsqueda premium */
+        .search-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .search-input::placeholder {
+            color: #6b7280;
+        }
+        
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 
+                0 0 0 4px rgba(102, 126, 234, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            outline: none;
+        }
+        
+        /* Animaciones suaves de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .stagger-item {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        
+        /* Acordeón FAQs mejorado */
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: 1.75rem 0;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            transition: all 0.3s ease;
+            gap: 1rem;
+        }
+        
+        .faq-question:hover {
+            color: #a5b4fc;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            color: #d1d5db;
+            line-height: 1.8;
+        }
+        
+        .faq-answer p {
+            padding-bottom: 1.75rem;
+        }
+        
+        .faq-icon {
+            font-size: 1rem;
+            color: #9ca3af;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+            background: rgba(102, 126, 234, 0.15);
+            color: #a5b4fc;
+        }
+        
+        /* Ocultar contenido inactivo */
+        .content-section.hidden {
+            display: none;
+        }
+        
+        /* Partículas flotantes mejoradas */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            animation: particleFloat 20s infinite ease-in-out;
+            filter: blur(1px);
+        }
+        
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(20px, -30px) scale(1.1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-15px, -60px) scale(0.9);
+                opacity: 0.3;
+            }
+            75% {
+                transform: translate(30px, -40px) scale(1.05);
+                opacity: 0.4;
+            }
+        }
+        
+        /* Mejoras responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .header-social-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.15rem;
+            }
+            
+            .nav-tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .card-liquid:hover {
+                transform: translateY(-4px);
+            }
+            
+            .action-btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body::after {
+                background-size: 30px 30px;
+            }
+            
+            #nav-tabs-container {
+                padding: 6px;
+            }
+            
+            .nav-tab {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .faq-question {
+                font-size: 1rem;
+                padding: 1.5rem 0;
+            }
+        }
+        
+        /* Efecto de brillo en scroll */
+        .scroll-glow {
+            position: relative;
+        }
+        
+        .scroll-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .scroll-glow.scrolled::before {
+            opacity: 1;
+        }
+        
+        /* Loading spinner mejorado */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(102, 126, 234, 0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Partículas de fondo -->
+    <div class="particles-container" id="particles-container"></div>
+
+    <!-- Encabezado -->
+    <header id="main-header" class="fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 h-full">
+            <div class="flex justify-between items-center h-full">
+                <a href="#" class="logo">DEVS</a>
+                <div id="header-social-icons" class="flex space-x-3 items-center">
+                    <a href="https://whatsapp.com/channel/0029VaDgLlM2kNFqDttPUZ1E" target="_blank" rel="noopener noreferrer" title="WhatsApp Canal" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp header-social-icon"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61574892055228" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook header-social-icon"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@devs-latam" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube header-social-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Espaciador para el header fijo -->
+    <div style="height: 5rem;"></div>
+
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Navegación SPA (Tabs) -->
+        <div id="nav-tabs-wrapper" class="sticky top-20 z-40 overflow-x-auto px-4 sm:px-6 py-4 scroll-glow">
+            <div id="nav-tabs-container" class="inline-flex space-x-3 p-2 rounded-2xl liquid-glass">
+                <button id="tab-grupos" class="nav-tab active" aria-label="Ver Grupos">
+                    <i class="fas fa-users mr-2"></i>Grupos
+                </button>
+                <button id="tab-admins" class="nav-tab" aria-label="Ver Administradores">
+                    <i class="fas fa-user-shield mr-2"></i>Admins
+                </button>
+                <button id="tab-recursos" class="nav-tab" aria-label="Ver Recursos">
+                    <i class="fas fa-book mr-2"></i>Recursos
+                </button>
+                <button id="tab-eventos" class="nav-tab" aria-label="Ver Eventos">
+                    <i class="fas fa-calendar-alt mr-2"></i>Eventos
+                </button>
+                <button id="tab-faqs" class="nav-tab" aria-label="Ver FAQs">
+                    <i class="fas fa-question-circle mr-2"></i>FAQs
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor para el contenido -->
+        <div class="container mx-auto px-4 sm:px-6 pb-16">
+            <!-- Sección de Grupos -->
+            <section id="content-grupos" class="content-section pt-12">
+                <div class="text-center mb-12 fade-in-up">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                        Grupos de la <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Comunidad</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        Explora y únete a nuestros grupos de WhatsApp para conectar, aprender y crecer junto a otros desarrolladores apasionados.
+                    </p>
+                </div>
+                
+                <div class="mb-10 w-full max-w-2xl mx-auto fade-in-up" style="animation-delay: 0.15s">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg"></i>
+                        <input 
+                            type="search" 
+                            id="search-grupos" 
+                            placeholder="Buscar grupos por nombre o tecnología..." 
+                            class="search-input w-full pl-14 pr-6 py-4 rounded-2xl placeholder-gray-500 focus:outline-none text-base"
+                            aria-label="Buscar grupos"
+                        >
+                    </div>
+                </div>
+
+                <div id="grupos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="col-span-full text-center py-12">
+                        <div class="loading-spinner mx-auto mb-4"></div>
+                        <p id="grupos-loading" class="text-gray-400">Cargando grupos...</p>
+                    </div>
+                    <p id="grupos-no-results" class="text-gray-400 col-span-full text-center py-12 hidden">
+                        <i class="fas fa-search text-4xl mb-4 block text-gray-600"></i>
+                        No se encontraron grupos que coincidan con tu búsqueda.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Sección de Administradores -->
+            <section id="content-admins" class="content-section hidden pt-12">
+                <div class="text-center mb-12 fade-in-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        Nuestro <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Equipo</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        El equipo que mantiene viva, ordenada y en constante crecimiento a nuestra comunidad.
+                    </p>
+                </div>
+                <div id="admins-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="col-span-full text-center py-12">
+                        <div class="loading-spinner mx-auto mb-4"></div>
+                        <p class="text-gray-400">Cargando administradores...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Recursos -->
+            <section id="content-recursos" class="content-section hidden pt-12">
+                <div class="text-center mb-12 fade-in-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        Recursos <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Compartidos</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        Material de estudio, cursos, herramientas y recursos valiosos compartidos por la comunidad.
+                    </p>
+                </div>
+                <div id="recursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="col-span-full text-center py-12">
+                        <div class="loading-spinner mx-auto mb-4"></div>
+                        <p class="text-gray-400">Cargando recursos...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Eventos -->
+            <section id="content-eventos" class="content-section hidden pt-12">
+                <div class="text-center mb-12 fade-in-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        Próximos <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Eventos</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        ¡Participa! Workshops, charlas, hackathons y eventos organizados por y para la comunidad.
+                    </p>
+                </div>
+                <div id="eventos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="col-span-full text-center py-12">
+                        <div class="loading-spinner mx-auto mb-4"></div>
+                        <p class="text-gray-400">Cargando eventos...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección FAQs -->
+            <section id="content-faqs" class="content-section hidden pt-12">
+                <div class="text-center mb-12 fade-in-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        Preguntas <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Frecuentes</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        Encuentra respuestas a las dudas más comunes sobre la comunidad y su funcionamiento.
+                    </p>
+                </div>
+                
+                <!-- Contenedor del Acordeón -->
+                <div id="faqs-container" class="max-w-4xl mx-auto liquid-glass rounded-2xl p-6 md:p-8">
+                    <div class="text-center py-12">
+                        <div class="loading-spinner mx-auto mb-4"></div>
+                        <p class="text-gray-400">Cargando preguntas frecuentes...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container mx-auto px-4 sm:px-6 py-16 mt-20 border-t border-gray-800/50">
+        <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8">
+            <div class="flex flex-col items-center md:items-start">
+                <p class="logo text-2xl mb-3">DEVS</p>
+                <p class="text-gray-500 text-sm">Comunidad de desarrolladores apasionados</p>
+                <p class="text-gray-600 text-xs mt-2">&copy; 2025 Comunidad DEVS. Todos los derechos reservados.</p>
+            </div>
+            
+            <div class="flex flex-col items-center md:items-end gap-4">
+                <p class="text-gray-400 text-sm font-medium mb-2">Síguenos en nuestras redes</p>
+                <div class="flex space-x-4">
+                    <a href="https://whatsapp.com/channel/0029VaDgLlM2kNFqDttPUZ1E" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61574892055228" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook text-2xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@devs-latam" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Línea decorativa -->
+        <div class="mt-12 w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
+        
+        <div class="mt-8 text-center">
+            <p class="text-gray-600 text-xs">
+                Hecho con <span class="text-red-500">♥</span> por la comunidad DEVS
+            </p>
+        </div>
+    </footer>
+
+    <!-- Plantillas de Tarjetas -->
+    <template id="grupo-card-template">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="grupo-card-link block h-full stagger-item">
+            <article class="card-liquid p-7 h-full flex flex-col">
+                <div class="flex items-center mb-5">
+                    <div class="grupo-imagen-container w-14 h-14 rounded-2xl overflow-hidden mr-4 flex-shrink-0 ring-2 ring-white/5">
+                        <img src="" alt="" class="grupo-imagen w-full h-full object-cover">
+                    </div>
+                    <h3 class="grupo-titulo text-xl font-bold text-white leading-tight"></h3>
+                </div>
+                <p class="grupo-descripcion text-gray-400 text-sm leading-relaxed flex-grow mb-6"></p>
+                <div class="mt-auto">
+                    <span class="action-btn">
+                        <span>Unirse al grupo</span>
+                        <i class="fas fa-arrow-right text-sm"></i>
+                    </span>
+                </div>
+            </article>
+        </a>
+    </template>
+    
+    <template id="admin-card-template">
+        <article class="card-liquid rounded-2xl overflow-hidden h-full flex flex-col stagger-item">
+            <div class="admin-banner h-28 bg-cover bg-center relative" style="background-image: url('img/default_banner.png');">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60"></div>
+                <div class="admin-foto-container absolute bottom-0 left-6 transform translate-y-1/2">
+                    <img src="img/default_profile.png" alt="Foto de perfil" class="admin-foto w-24 h-24 rounded-2xl border-4 border-gray-900/50 ring-2 ring-white/10 object-cover">
+                </div>
+            </div>
+            <div class="pt-16 px-7 pb-7 flex flex-col flex-grow">
+                <h3 class="admin-nombre text-2xl font-bold text-white mb-1"></h3>
+                <p class="admin-desc text-blue-400 text-sm font-medium mb-6"></p>
+                <div class="mb-6">
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Administra</h4>
+                    <div class="admin-grupos flex flex-wrap gap-2">
+                        <!-- Tags de grupos se insertan aquí -->
+                    </div>
+                </div>
+                <div class="admin-links mt-auto pt-6 flex space-x-3 border-t border-white/5">
+                    <!-- Iconos sociales se insertan aquí -->
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <template id="recurso-card-template">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="recurso-card-link block h-full stagger-item">
+            <article class="card-liquid p-7 h-full flex flex-col">
+                <div class="flex items-center mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mr-4 ring-2 ring-blue-500/20">
+                        <i class="fa-brands fa-google-drive text-3xl text-blue-400"></i>
+                    </div>
+                    <h3 class="recurso-titulo text-xl font-bold text-white leading-tight"></h3>
+                </div>
+                <p class="recurso-descripcion text-gray-400 text-sm leading-relaxed flex-grow mb-6"></p>
+                <div class="mt-auto">
+                    <span class="action-btn">
+                        <span>Ir a Drive</span>
+                        <i class="fas fa-external-link-alt text-sm"></i>
+                    </span>
+                </div>
+            </article>
+        </a>
+    </template>
+<template id="evento-card-template">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="evento-card-link block h-full stagger-item">
+            <article class="card-liquid rounded-2xl overflow-hidden h-full flex flex-col">
+                <div class="evento-imagen-container relative overflow-hidden h-56 bg-gradient-to-br from-gray-800 to-gray-900">
+                    <img src="" alt="" class="evento-imagen w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class="fas fa-calendar-alt text-blue-400 text-sm"></i>
+                        <p class="evento-fecha text-blue-400 text-sm font-semibold"></p>
+                    </div>
+                    <h3 class="evento-titulo text-xl font-bold text-white mb-4 leading-tight"></h3>
+                    <p class="evento-descripcion text-gray-400 text-sm leading-relaxed flex-grow mb-6"></p>
+                    <div class="mt-auto">
+                        <span class="action-btn">
+                            <span>Más información</span>
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </span>
+                    </div>
+                </div>
+            </article>
+        </a>
+    </template>
+
+
+    
+    
+    
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // INICIALIZACIÓN Y CONFIGURACIÓN
+    // ==========================================
+    
+    // Crear partículas de fondo
+    createParticles();
+    
+    // Inicializar observador de animaciones
+    initIntersectionObserver();
+    
+    // Inicializar efectos de scroll
+    initScrollEffects();
+    
+    // ==========================================
+    // ELEMENTOS DEL DOM
+    // ==========================================
+    
+    const elements = {
+        // Tabs
+        tabs: {
+            grupos: document.getElementById('tab-grupos'),
+            admins: document.getElementById('tab-admins'),
+            recursos: document.getElementById('tab-recursos'),
+            eventos: document.getElementById('tab-eventos'),
+            faqs: document.getElementById('tab-faqs')
+        },
+        // Contenidos
+        content: {
+            grupos: document.getElementById('content-grupos'),
+            admins: document.getElementById('content-admins'),
+            recursos: document.getElementById('content-recursos'),
+            eventos: document.getElementById('content-eventos'),
+            faqs: document.getElementById('content-faqs')
+        },
+        // Grids
+        grids: {
+            grupos: document.getElementById('grupos-grid'),
+            admins: document.getElementById('admins-grid'),
+            recursos: document.getElementById('recursos-grid'),
+            eventos: document.getElementById('eventos-grid')
+        },
+        // Otros
+        searchInput: document.getElementById('search-grupos'),
+        gruposLoading: document.getElementById('grupos-loading'),
+        faqsContainer: document.getElementById('faqs-container'),
+        navTabsWrapper: document.getElementById('nav-tabs-wrapper'),
+        header: document.getElementById('main-header')
+    };
+    
+    // Arrays para manejo de tabs
+    const allTabs = Object.values(elements.tabs);
+    const allContent = Object.values(elements.content);
+    
+    // ==========================================
+    // GESTIÓN DE TABS
+    // ==========================================
+    
+    /**
+     * Cambia entre pestañas con animaciones suaves
+     */
+    const switchTab = (activeTab, activeContent) => {
+        // Remover clases activas
+        allTabs.forEach(tab => tab?.classList.remove('active'));
+        allContent.forEach(content => content?.classList.add('hidden'));
+        
+        // Activar nueva pestaña
+        activeTab?.classList.add('active');
+        activeContent?.classList.remove('hidden');
+        
+        // Animar elementos con delay
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                animateStaggerItems(activeContent);
+            }, 50);
+        });
+        
+        // Scroll suave al contenido
+        smoothScrollToContent(activeContent);
+    };
+    
+    // Asignar eventos a tabs
+    Object.entries(elements.tabs).forEach(([key, tab]) => {
+        tab?.addEventListener('click', () => {
+            switchTab(tab, elements.content[key]);
+        });
+    });
+    
+    // ==========================================
+    // CARGA DE DATOS
+    // ==========================================
+    
+    /**
+     * Función genérica para cargar datos JSON
+     */
+    const loadData = async (filename, renderFunction, container, errorMessage) => {
+        try {
+            const response = await fetch(filename);
+            if (!response.ok) throw new Error(`Error al cargar ${filename}`);
+            
+            const data = await response.json();
+            renderFunction(data, container);
+            
+            return data;
+        } catch (error) {
+            console.error(`Error cargando ${filename}:`, error);
+            if (container) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-4 block"></i>
+                        <p class="text-red-400">${errorMessage || 'Error al cargar los datos'}</p>
+                    </div>
+                `;
+            }
+            throw error;
+        }
+    };
+    
+    // Cargar todos los datos
+    Promise.all([
+        loadData('grupos.json', renderizarGrupos, elements.grids.grupos, 'Error al cargar los grupos')
+            .then(() => {
+                elements.gruposLoading?.classList.add('hidden');
+                animateStaggerItems(elements.content.grupos);
+            }),
+        
+        loadData('admins.json', renderizarAdmins, elements.grids.admins, 'Error al cargar los administradores'),
+        
+        loadData('recursos.json', renderizarRecursos, elements.grids.recursos, 'Error al cargar los recursos'),
+        
+        loadData('eventos.json', renderizarEventos, elements.grids.eventos, 'Error al cargar los eventos'),
+        
+        loadData('faqs.json', renderizarFaqs, elements.faqsContainer, 'Error al cargar las preguntas frecuentes')
+    ]).then(() => {
+        console.log('✅ Todos los datos cargados exitosamente');
+    }).catch(error => {
+        console.error('❌ Error en la carga de datos:', error);
+    });
+    
+    // ==========================================
+    // FUNCIONES DE RENDERIZADO
+    // ==========================================
+    
+    /**
+     * Renderiza tarjetas de grupos
+     */
+    function renderizarGrupos(gruposData, container) {
+        if (!container) return;
+        
+        const grupoTemplate = document.getElementById('grupo-card-template');
+        const fragment = document.createDocumentFragment();
+        
+        gruposData.forEach((grupo, index) => {
+            const card = grupoTemplate.content.cloneNode(true);
+            const linkElement = card.querySelector('.grupo-card-link');
+            
+            // Configurar enlace
+            linkElement.href = grupo.link;
+            linkElement.dataset.searchText = `${grupo.titulo.toLowerCase()} ${grupo.descripcion.toLowerCase()}`;
+            linkElement.style.animationDelay = `${index * 0.05}s`;
+            
+            // Configurar imagen
+            const imgEl = card.querySelector('.grupo-imagen');
+            imgEl.src = grupo.imagen || 'img/default_group.png';
+            imgEl.alt = `Logo de ${grupo.titulo}`;
+            imgEl.loading = 'lazy';
+            
+            // Agregar error handler para imágenes
+            imgEl.onerror = function() {
+                this.src = 'img/default_group.png';
+            };
+            
+            // Configurar textos
+            card.querySelector('.grupo-titulo').textContent = grupo.titulo;
+            card.querySelector('.grupo-descripcion').textContent = grupo.descripcion;
+            
+            fragment.appendChild(card);
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(fragment);
+        
+        // Agregar mensaje de no resultados
+        const noResultsEl = document.createElement('div');
+        noResultsEl.id = 'grupos-no-results';
+        noResultsEl.className = 'col-span-full text-center py-16 hidden';
+        noResultsEl.innerHTML = `
+            <i class="fas fa-search text-5xl mb-4 block text-gray-700"></i>
+            <p class="text-gray-400 text-lg">No se encontraron grupos que coincidan con tu búsqueda</p>
+            <p class="text-gray-600 text-sm mt-2">Intenta con otros términos de búsqueda</p>
+        `;
+        container.appendChild(noResultsEl);
+    }
+    
+    /**
+     * Renderiza tarjetas de administradores
+     */
+    function renderizarAdmins(adminsData, container) {
+        if (!container) return;
+        
+        const adminTemplate = document.getElementById('admin-card-template');
+        const fragment = document.createDocumentFragment();
+        
+        adminsData.forEach((admin, index) => {
+            const card = adminTemplate.content.cloneNode(true);
+            
+            // Configurar banner
+            const fotoSrc = admin.foto || 'img/default_profile.png';
+            const bannerSrc = admin.banner || fotoSrc;
+            const bannerEl = card.querySelector('.admin-banner');
+            bannerEl.style.backgroundImage = `url('${bannerSrc}')`;
+            
+            // Configurar foto de perfil
+            const fotoEl = card.querySelector('.admin-foto');
+            fotoEl.src = fotoSrc;
+            fotoEl.alt = `Foto de ${admin.nombre}`;
+            fotoEl.loading = 'lazy';
+            fotoEl.onerror = function() {
+                this.src = 'img/default_profile.png';
+            };
+            
+            // Configurar textos
+            card.querySelector('.admin-nombre').textContent = admin.nombre;
+            card.querySelector('.admin-desc').textContent = admin.descripcion;
+            
+            // Renderizar grupos administrados
+            const gruposContainer = card.querySelector('.admin-grupos');
+            admin.grupos.forEach(nombreGrupo => {
+                const tag = document.createElement('span');
+                tag.className = "px-3 py-1.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-300 text-xs font-medium rounded-full border border-blue-500/20 hover:border-blue-500/40 transition-colors duration-300";
+                tag.textContent = nombreGrupo;
+                gruposContainer.appendChild(tag);
+            });
+            
+            // Renderizar enlaces sociales
+            const linksContainer = card.querySelector('.admin-links');
+            const iconMap = {
+                'github': 'fa-brands fa-github',
+                'linkedin': 'fa-brands fa-linkedin',
+                'twitter': 'fa-brands fa-twitter',
+                'instagram': 'fa-brands fa-instagram',
+                'website': 'fa-solid fa-globe'
+            };
+            
+            admin.links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                a.title = link.tipo;
+                a.className = "text-gray-400 hover:text-white transition-all duration-300 text-xl hover:scale-110 transform";
+                
+                const iconClass = iconMap[link.tipo] || 'fa-solid fa-link';
+                a.innerHTML = `<i class="${iconClass}"></i>`;
+                
+                linksContainer.appendChild(a);
+            });
+            
+            // Aplicar delay de animación
+            const cardArticle = card.querySelector('article');
+            if (cardArticle) {
+                cardArticle.style.animationDelay = `${index * 0.05}s`;
+            }
+            
+            fragment.appendChild(card);
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(fragment);
+    }
+    
+    /**
+     * Renderiza tarjetas de recursos
+     */
+    function renderizarRecursos(recursosData, container) {
+        if (!container) return;
+        
+        const recursoTemplate = document.getElementById('recurso-card-template');
+        const fragment = document.createDocumentFragment();
+        
+        recursosData.forEach((recurso, index) => {
+            const card = recursoTemplate.content.cloneNode(true);
+            const linkEl = card.querySelector('.recurso-card-link');
+            
+            linkEl.href = recurso.link;
+            linkEl.style.animationDelay = `${index * 0.05}s`;
+            
+            card.querySelector('.recurso-titulo').textContent = recurso.titulo;
+            card.querySelector('.recurso-descripcion').textContent = recurso.descripcion;
+            
+            fragment.appendChild(card);
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(fragment);
+    }
+    
+    /**
+     * Renderiza tarjetas de eventos
+     */
+    function renderizarEventos(eventosData, container) {
+        if (!container) return;
+        
+        const eventoTemplate = document.getElementById('evento-card-template');
+        const fragment = document.createDocumentFragment();
+        
+        const formatter = new Intl.DateTimeFormat('es-ES', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZone: 'UTC'
+        });
+        
+        eventosData.forEach((evento, index) => {
+            const card = eventoTemplate.content.cloneNode(true);
+            const linkEl = card.querySelector('.evento-card-link');
+            
+            linkEl.href = evento.link;
+            linkEl.style.animationDelay = `${index * 0.05}s`;
+            
+            // Configurar imagen
+            const imgEl = card.querySelector('.evento-imagen');
+            imgEl.src = evento.imagen || 'https://placehold.co/600x400/0f0f0f/667eea?text=Evento+DEVS';
+            imgEl.alt = `Banner de ${evento.titulo}`;
+            imgEl.loading = 'lazy';
+            imgEl.onerror = function() {
+                this.src = 'https://placehold.co/600x400/0f0f0f/667eea?text=Evento+DEVS';
+            };
+            
+            // Formatear fecha
+            try {
+                const fecha = new Date(evento.fecha_inicio);
+                if (!isNaN(fecha.getTime())) {
+                    card.querySelector('.evento-fecha').textContent = formatter.format(fecha);
+                } else {
+                    throw new Error('Fecha inválida');
+                }
+            } catch (e) {
+                console.warn('Fecha inválida para el evento:', evento.titulo);
+                card.querySelector('.evento-fecha').textContent = "Fecha por confirmar";
+            }
+            
+            card.querySelector('.evento-titulo').textContent = evento.titulo;
+            card.querySelector('.evento-descripcion').textContent = evento.descripcion;
+            
+            fragment.appendChild(card);
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(fragment);
+    }
+    
+    /**
+     * Renderiza acordeón de FAQs
+     */
+    function renderizarFaqs(faqsData, container) {
+        if (!container) return;
+        
+        const fragment = document.createDocumentFragment();
+        
+        faqsData.forEach((faq, index) => {
+            const item = document.createElement('div');
+            item.className = 'faq-item stagger-item';
+            item.style.animationDelay = `${index * 0.05}s`;
+            
+            // Crear botón de pregunta
+            const questionButton = document.createElement('button');
+            questionButton.className = 'faq-question';
+            questionButton.setAttribute('aria-expanded', 'false');
+            questionButton.innerHTML = `
+                <span class="text-left flex-grow">${faq.pregunta}</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            `;
+            
+            // Crear contenedor de respuesta
+            const answerDiv = document.createElement('div');
+            answerDiv.className = 'faq-answer';
+            answerDiv.innerHTML = `<p>${faq.respuesta}</p>`;
+            
+            // Evento de toggle con animación mejorada
+            questionButton.addEventListener('click', () => {
+                const isActive = questionButton.classList.contains('active');
+                
+                // Cerrar todos los otros FAQs (opcional)
+                // container.querySelectorAll('.faq-question.active').forEach(q => {
+                //     if (q !== questionButton) {
+                //         q.classList.remove('active');
+                //         q.nextElementSibling.style.maxHeight = null;
+                //     }
+                // });
+                
+                questionButton.classList.toggle('active');
+                questionButton.setAttribute('aria-expanded', !isActive);
+                
+                if (answerDiv.style.maxHeight) {
+                    answerDiv.style.maxHeight = null;
+                } else {
+                    answerDiv.style.maxHeight = answerDiv.scrollHeight + 'px';
+                }
+            });
+            
+            item.appendChild(questionButton);
+            item.appendChild(answerDiv);
+            fragment.appendChild(item);
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(fragment);
+        
+        // Animar elementos después de renderizar
+        setTimeout(() => {
+            animateStaggerItems(container.parentElement);
+        }, 100);
+    }
+    
+    // ==========================================
+    // BÚSQUEDA DE GRUPOS
+    // ==========================================
+    
+    if (elements.searchInput && elements.grids.grupos) {
+        let searchTimeout;
+        
+        elements.searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            
+            searchTimeout = setTimeout(() => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                const allGrupos = elements.grids.grupos.querySelectorAll('.grupo-card-link');
+                const noResultsEl = document.getElementById('grupos-no-results');
+                let visibleCount = 0;
+                
+                allGrupos.forEach((grupoCard, index) => {
+                    const searchText = grupoCard.dataset.searchText || '';
+                    const shouldShow = searchText.includes(searchTerm);
+                    
+                    if (shouldShow) {
+                        grupoCard.style.display = 'block';
+                        grupoCard.style.animationDelay = `${index * 0.03}s`;
+                        grupoCard.classList.add('fade-in-up');
+                        visibleCount++;
+                    } else {
+                        grupoCard.style.display = 'none';
+                    }
+                });
+                
+                // Mostrar/ocultar mensaje de no resultados
+                if (noResultsEl) {
+                    noResultsEl.classList.toggle('hidden', visibleCount > 0);
+                }
+            }, 300); // Debounce de 300ms
+        });
+    }
+    
+    // ==========================================
+    // FUNCIONES DE ANIMACIÓN
+    // ==========================================
+    
+    /**
+     * Anima elementos con efecto escalonado
+     */
+    function animateStaggerItems(container) {
+        if (!container) return;
+        
+        const staggerItems = container.querySelectorAll('.stagger-item');
+        
+        staggerItems.forEach((item, index) => {
+            // Reset animation
+            item.style.opacity = '0';
+            item.style.animation = 'none';
+            
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    item.style.animationDelay = `${index * 0.05}s`;
+                    item.style.animation = '';
+                    item.classList.add('fade-in-up');
+                }, 10);
+            });
+        });
+    }
+    
+/**
+     * Crea partículas de fondo animadas
+     */
+    function createParticles() {
+        const container = document.getElementById('particles-container');
+        if (!container) return;
+        
+        const particleCount = window.innerWidth < 768 ? 10 : 20;
+        const fragment = document.createDocumentFragment();
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Configuración aleatoria
+            const size = Math.random() * 120 + 40;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const duration = Math.random() * 10 + 15;
+            const delay = Math.random() * 20;
+            const opacity = Math.random() * 0.08 + 0.02;
+            
+            Object.assign(particle.style, {
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${posX}%`,
+                top: `${posY}%`,
+                opacity: opacity,
+                animationDuration: `${duration}s`,
+                animationDelay: `${delay}s`
+            });
+            
+            fragment.appendChild(particle);
+        }
+        
+        container.appendChild(fragment);
+    }
+    
+    /**
+     * Inicializa el observador de intersección para animaciones
+     */
+    function initIntersectionObserver() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos con clase específica
+        const observeNewElements = () => {
+            document.querySelectorAll('.stagger-item:not(.fade-in-up)').forEach(el => {
+                observer.observe(el);
+            });
+        };
+        
+        // Observar inicialmente y después de mutaciones
+        observeNewElements();
+        
+        const mutationObserver = new MutationObserver(observeNewElements);
+        mutationObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+    
+    /**
+     * Inicializa efectos de scroll
+     */
+    function initScrollEffects() {
+        let lastScroll = 0;
+        let ticking = false;
+        
+        const handleScroll = () => {
+            const currentScroll = window.pageYOffset;
+            
+            // Efecto en el header
+            if (elements.header) {
+                if (currentScroll > 100) {
+                    elements.header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+                } else {
+                    elements.header.style.boxShadow = '';
+                }
+            }
+            
+            // Efecto en navegación de tabs
+            if (elements.navTabsWrapper) {
+                if (currentScroll > 80) {
+                    elements.navTabsWrapper.classList.add('scrolled');
+                } else {
+                    elements.navTabsWrapper.classList.remove('scrolled');
+                }
+            }
+            
+            lastScroll = currentScroll;
+            ticking = false;
+        };
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(handleScroll);
+                ticking = true;
+            }
+        });
+    }
+    
+    /**
+     * Scroll suave al contenido con offset
+     */
+    function smoothScrollToContent(contentElement) {
+        if (!contentElement || !elements.navTabsWrapper) return;
+        
+        setTimeout(() => {
+            const headerHeight = elements.header?.offsetHeight || 0;
+            const tabsHeight = elements.navTabsWrapper.offsetHeight || 0;
+            const totalOffset = headerHeight + tabsHeight + 20;
+            
+            const elementPosition = contentElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - totalOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
+    
+    // ==========================================
+    // UTILIDADES
+    // ==========================================
+    
+    /**
+     * Muestra notificación toast (opcional)
+     */
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `fixed bottom-6 right-6 px-6 py-4 rounded-xl shadow-2xl transform transition-all duration-500 z-50 ${
+            type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+        } text-white`;
+        toast.textContent = message;
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.classList.add('translate-y-2', 'opacity-0'), 3000);
+        setTimeout(() => toast.remove(), 3500);
+    }
+    
+    // ==========================================
+    // EVENTOS GLOBALES
+    // ==========================================
+    
+    // Prevenir comportamiento por defecto en enlaces vacíos
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href="#"]');
+        if (link) {
+            e.preventDefault();
+        }
+    });
+    
+    // Performance: pausar animaciones cuando la pestaña no está visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            document.body.style.animationPlayState = 'paused';
+        } else {
+            document.body.style.animationPlayState = 'running';
+        }
+    });
+    
+    console.log('🚀 Comunidad DEVS - Aplicación inicializada correctamente');
+});
+</script>
+    
+    
+    
+    
+
+</body>
+</html>
